@@ -1,0 +1,8 @@
+Transaction Flow Diagram 业务流程图
+Structured Analysis SA 结构化分析
+data dictionary 数据字典
+Use case 用例
+Prototype 原型
+Requirements analysis 需求分析
+methodologies 开发方法
+Entity Relationship Diagram ER图
