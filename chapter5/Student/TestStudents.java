@@ -68,13 +68,16 @@ class CollegeStudents extends Students{
 	private String company;
 	private String major;
 	
-	CollegeStudents(String id,int cid,String name,char gender,int age,String com,String major){
-		this.sId=id;
+	CollegeStudents(String id,int cid,String name,char gender,int age,String practiceCompany,String major){
+		/*this.sId=id;
 		this.cId=cid;
 		this.sName=name;
 		this.sGender=gender;
 		this.sAge=age;
 		this.company=com;
+		this.major=major;*/
+		super(id,clsId,gender,name,age);
+		this.practiceCompany=practiceCompany;
 		this.major=major;
 	}
 	public getMajor(){

@@ -1,0 +1,5 @@
+思考与练习4： 
+① 定义Student接口，其中包括方法printInfo(); 
+② 定义InfoStudent类实现Student接口，酌情设置相应的域和方法，并包括一个抽象方法：doPractice();
+③ 定义SoftwareStudent类继承InfoStudent，并实现抽象方法doPractice()； 
+④ 定义主类，验证上述类与接口的功能。（包）

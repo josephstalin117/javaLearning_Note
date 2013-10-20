@@ -1,0 +1,36 @@
+import java.awt.*;
+
+
+
+
+class CalculatorFrame extends JFrame{
+	private JButton key[];
+	private JPanel keyPad;
+	private JTextField lcd;
+	
+	public CalculatorFrame(){
+		setTitle("Calculator");
+		lcd = new JTextField(20);
+		key = new JButton[16];
+		lcd.setEditable(false);
+		
+		for(int i=0;i<=9;i++){
+			key[i] = new JButton(String.Value)
+		}
+		key[10] = new JButton("/");
+		key[10] = new JButton("/");
+		key[10] = new JButton("/");
+		key[10] = new JButton("/");
+		key[10] = new JButton("/");
+		key[14] = new JButton("=");
+		
+		keyPad = new JPanel();
+		
+		keyPad.setLayout(new GridLayout())
+		
+		for(int i=7;i<=10;i++){
+			keyPad.add(keys[i]);
+		}
+		add(lcd,)
+	}
+}
