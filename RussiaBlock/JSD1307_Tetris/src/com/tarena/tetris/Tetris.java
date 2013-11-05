@@ -129,21 +129,21 @@ public class Tetris extends JPanel {
 		};
 		this.requestFocus();
 		this.addKeyListener(l);
-		// 看到这里了。。。
 	}
 
 	public void paint(Graphics g) {
 		g.drawImage(background, 0, 0, null);// 使用this 作为观察者
-		g.translate(15, 15);// 平移绘图坐标系
+		g.translate(15, 15);// 平移绘图坐标系？？
 		paintTetromino(g);// 绘制正在下落的方块
 		paintWall(g);// 画墙
-		paintNextOne(g);
-		paintScore(g);
+		paintNextOne(g);// 下一个组件
+		paintScore(g);// 画分
 	}
 
 	public static final int FONT_COLOR = 0x667799;
 	public static final int FONT_SIZE = 0x20;
 
+	// 面板文字
 	private void paintScore(Graphics g) {
 		Font f = getFont();// 获取当前的 面板默认字体
 		Font font = new Font(f.getName(), Font.BOLD, FONT_SIZE);
@@ -151,18 +151,18 @@ public class Tetris extends JPanel {
 		int y = 162;
 		g.setColor(new Color(FONT_COLOR));
 		g.setFont(font);
-		String str = "SCORE:" + this.score;
+		String str = "分数:" + this.score;
 		g.drawString(str, x, y);
 		y += 56;
-		str = "LINES:" + this.lines;
+		str = "行数:" + this.lines;
 		g.drawString(str, x, y);
 		y += 56;
-		str = "[P]Pause";
+		str = "[P]暂停";
 		if (pause) {
-			str = "[C]Continue";
+			str = "[C]";
 		}
 		if (gameOver) {
-			str = "[S]Start!";
+			str = "[S]开始!";
 		}
 		g.drawString(str, x, y);
 	}
@@ -171,7 +171,8 @@ public class Tetris extends JPanel {
 		Cell[] cells = nextOne.getCells();
 		for (int i = 0; i < cells.length; i++) {
 			Cell c = cells[i];
-			int x = (c.getCol() + 10) * CELL_SIZE - 1;
+			// int x= 16;
+			int x = (c.getCol() + 10) * CELL_SIZE - 1;// 定义下一个图的位置
 			int y = (c.getRow() + 1) * CELL_SIZE - 1;
 			g.drawImage(c.getImage(), x, y, null);
 		}
@@ -198,11 +199,12 @@ public class Tetris extends JPanel {
 			for (int col = 0; col < line.length; col++) {
 				Cell cell = line[col];
 				int x = col * CELL_SIZE;
+				// int x= 1;
 				int y = row * CELL_SIZE;
 				if (cell == null) {
-					// g.setColor(new Color(0));
+					g.setColor(new Color(0));
 					// 画方形
-					// g.drawRect(x, y, CELL_SIZE, CELL_SIZE);
+					g.drawRect(x, y, CELL_SIZE, CELL_SIZE);
 				} else {
 					g.drawImage(cell.getImage(), x - 1, y - 1, null);
 				}
@@ -242,7 +244,7 @@ public class Tetris extends JPanel {
 		this.score += SCORE_TABLE[lines];
 	}
 
-	private static final int[] SCORE_TABLE = { 0, 1, 10, 30, 200 };
+	private static final int[] SCORE_TABLE = { 0, 1, 10, 30, 200 };// 积分榜
 
 	// 0 1 2 3 4
 
@@ -388,7 +390,7 @@ public class Tetris extends JPanel {
 				softDropAction();
 				repaint();
 			}
-		}, 700, 700);
+		}, 600, 600);// 调整速度
 	}
 
 	private void clearWall() {

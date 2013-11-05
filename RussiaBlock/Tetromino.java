@@ -85,7 +85,7 @@ public class Tetromino {
 	protected class State{
 		int row0,col0,row1,col1,row2,col2,row3,col3;
 
-		public State(int row0, int col0, int row1, int col1,
+		public State(int row0, int col0, int row1, int col1,+s
 				int row2, int col2,
 				int row3, int col3) {
 			this.row0 = row0;
@@ -97,6 +97,7 @@ public class Tetromino {
 			this.row3 = row3;
 			this.col3 = col3;
 		}	  
+		
 	}
 	
 }//Tetromino ÀàµÄ½áÊø
