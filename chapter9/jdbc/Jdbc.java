@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public final class Jdbc {
-	private static String url = "jdbc:mysql://localhost:3306/jdbc";
+	private static String url = "jdbc:mysql://localhost:3306/hehe";
 	private static String user = "root";
 	private static String password = "lyz133551";
 
@@ -14,6 +14,7 @@ public final class Jdbc {
 	}
 
 	static {
+
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
