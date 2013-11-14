@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public final class Jdbc {
-	private static String url = "jdbc:mysql://localhost:3306/hehe";
+	private static String url = "jdbc:mysql://localhost:3306/xscj";
 	private static String user = "root";
 	private static String password = "lyz133551";
 
@@ -35,6 +35,52 @@ public final class Jdbc {
 
 	}
 
+	/**
+	 * @param rs
+	 * 释放ResultSet
+	 */
+	static void freeResultSet(ResultSet rs) {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * @param ps
+	 * 释放Statement
+	 */
+	static void freeStatement(Statement ps) {
+		try {
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @param con
+	 * 释放Connection
+	 */
+	static void freeConnection(Connection con) {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @param rs
+	 * @param sm
+	 * @param con
+	 * 释放全部
+	 */
 	static void free(ResultSet rs, Statement sm, Connection con) {
 		try {
 			if (rs != null) {

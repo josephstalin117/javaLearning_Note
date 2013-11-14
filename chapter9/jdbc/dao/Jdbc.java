@@ -1,3 +1,5 @@
+package dao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -5,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public final class Jdbc {
-	private static String url = "jdbc:mysql://localhost:3306/hehe";
+	private static String url = "jdbc:mysql://localhost:3306/hehe?useUnicode=true&characterEncoding=utf-8";
 	private static String user = "root";
 	private static String password = "lyz133551";
 

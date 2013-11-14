@@ -8,18 +8,17 @@ import java.sql.SQLException;
 
 public class Read {
 
-	public static void main(String[] args) {
-		// read("select * from hehe_user");//r
-		System.out.println("hehe~");
-		// write("UPDATE xs_kc set k_score=k_score+1");//u
-		// write("DELETE FROM kc WHERE k_id='102'");//D
-		// write("INSERT INTO hehe_user VALUES('122','潘哈哈','is')");
-		// c
-	}
+//	public static void main(String[] args) {
+//		// read("select * from hehe_user");//r
+//		System.out.println("hehe~");
+//		// write("UPDATE xs_kc set k_score=k_score+1");//u
+//		// write("DELETE FROM kc WHERE k_id='102'");//D
+//		// write("INSERT INTO hehe_user VALUES('122','潘哈哈','is')");
+//		// c
+//	}
 
 	static void read(String id) {
 		Connection con = null;
-		// Statement sm = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		String sql = "select * from hehe_user where id=?";
