@@ -1,10 +1,12 @@
 import java.math.BigDecimal;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 
 public class Acid {
 
@@ -14,7 +16,7 @@ public class Acid {
 	static Connection con = null;
 
 	public static void main(String[] args) {
-		int hehe = transfer(1, "123456", 2, "wakaka", new BigDecimal("100.00"));
+		int hehe = transfer(5, "123456", 2, "wakaka", new BigDecimal("100.00"));
 		System.out.println(hehe);
 	}
 
@@ -40,7 +42,7 @@ public class Acid {
 
 			// 判断能否登录
 
-			if (login(Pwd, rsFrom)) {
+			if (login(from, Pwd, con)) {
 				System.out.println("登录成功");
 				if (verifyName(toName, rsTo)) {
 					System.out.println("姓名匹配");
@@ -70,7 +72,7 @@ public class Acid {
 				System.out.println("密码错误");
 				temp = -1;
 			}
-			//回滚判断
+			// 回滚判断
 			if (temp == 1) {
 				con.commit();
 			} else {
@@ -83,13 +85,11 @@ public class Acid {
 					con.rollback();
 				}
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
 		} finally {
 			// Jdbc.free(rs, ps, con);
-			// TODO free prepareStatement freeResultSet
 			Jdbc.freeConnection(con);
 		}
 		switch (temp) {
@@ -136,21 +136,24 @@ public class Acid {
 	 * @return
 	 */
 	@SuppressWarnings("finally")
-	private static boolean login(String pwd, ResultSet rsFrom) {
-		String loginPwd = null;
-		int i = 0;
+	private static boolean login(int from, String pwd, Connection con) {
+		CallableStatement cs = null;
+		int temp = 0;
+
 		try {
-			if (rsFrom.next()) {
-				loginPwd = rsFrom.getString("pwd");
-			}
+			cs = con.prepareCall("{Call verifyPerson(?,?,?)}");
+			cs.setInt(1, from);
+			cs.setString(2, pwd);
+			cs.registerOutParameter(3, Types.INTEGER);
+
+			// 执行
+			cs.executeUpdate();
+			temp = cs.getInt(3);
+			System.out.print(temp);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (pwd.trim().equals(loginPwd.trim())) {
-			i = 1;
-		}
-		if (i == 1) {
+		if (temp == 1) {
 			return true;
 		} else {
 			return false;
@@ -172,7 +175,6 @@ public class Acid {
 				Name = rsTo.getString("name");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (toName.trim().equals(Name.trim())) {

@@ -1,5 +1,4 @@
-package dao;
-
+package CURD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,6 +8,8 @@ import java.sql.Statement;
 public final class Jdbc {
 	private static String url = "jdbc:mysql://localhost:3306/hehe?useUnicode=true&characterEncoding=utf-8";
 	private static String user = "root";
+	
+	//密码换成自己的密码
 	private static String password = "lyz133551";
 
 	private Jdbc() {

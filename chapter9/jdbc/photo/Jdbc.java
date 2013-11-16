@@ -1,5 +1,4 @@
-package dao;
-
+package photo;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public final class Jdbc {
-	private static String url = "jdbc:mysql://localhost:3306/hehe?useUnicode=true&characterEncoding=utf-8";
+	private static String url = "jdbc:mysql://localhost:3306/hehe";
 	private static String user = "root";
 	private static String password = "lyz133551";
 
@@ -20,6 +19,7 @@ public final class Jdbc {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -29,6 +29,7 @@ public final class Jdbc {
 			return (Connection) DriverManager
 					.getConnection(url, user, password);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -41,11 +42,13 @@ public final class Jdbc {
 				rs.close();
 			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				sm.close();
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -53,6 +56,7 @@ public final class Jdbc {
 		try {
 			con.close();
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

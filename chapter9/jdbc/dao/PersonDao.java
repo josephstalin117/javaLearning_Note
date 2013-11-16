@@ -16,10 +16,26 @@ public interface PersonDao {
 	 */
 	public boolean invalidPerson(Person p);
 
+	/**
+	 * 删除员工信息
+	 * @param p
+	 * @return
+	 */
 	public boolean deletePerson(Person p);
 
-	public boolean newPerson(Person p);
+	/**
+	 * 添加员工信息
+	 * @param p
+	 * @return
+	 */
+	public Person newPerson(Person p);
 
 
+	/**
+	 * 修改员工姓名
+	 * @param p
+	 * @param hehename
+	 * @return
+	 */
 	boolean changeName(Person p, String hehename);
 }

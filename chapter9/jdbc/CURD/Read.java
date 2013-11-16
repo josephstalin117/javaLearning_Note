@@ -1,3 +1,4 @@
+package CURD;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -8,15 +9,18 @@ import java.sql.SQLException;
 
 public class Read {
 
-//	public static void main(String[] args) {
-//		// read("select * from hehe_user");//r
-//		System.out.println("hehe~");
-//		// write("UPDATE xs_kc set k_score=k_score+1");//u
-//		// write("DELETE FROM kc WHERE k_id='102'");//D
-//		// write("INSERT INTO hehe_user VALUES('122','潘哈哈','is')");
-//		// c
-//	}
+	public static void main(String[] args) {
+		 read("1");//r
+		// write("UPDATE xs_kc set k_score=k_score+1");//u
+		// write("DELETE FROM kc WHERE k_id='102'");//D
+		// write("INSERT INTO hehe_user VALUES('122','潘哈哈','is')");//C
+	}
 
+	/**
+	 * @param id
+	 * 读取数据
+	 * 不易被sql注入
+	 */
 	static void read(String id) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -25,13 +29,8 @@ public class Read {
 
 		try {
 			con = Jdbc.getCon();
-			// sm = con.createStatement();
-			// System.out.println(sql);
 			ps = con.prepareStatement(sql);
-			// ps.setString(1, "1");
 			ps.setString(1, id);
-
-			// rs = sm.executeQuery(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				System.out.println(rs.getObject("username"));
@@ -40,12 +39,16 @@ public class Read {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// Jdbc.free(rs, sm, con);
 			Jdbc.free(rs, ps, con);
 
 		}
 	}
 
+	/**
+	 * 写数据
+	 * @param sql
+	 * @return
+	 */
 	static int write(String sql) {
 		Connection con = null;
 		Statement sm = null;

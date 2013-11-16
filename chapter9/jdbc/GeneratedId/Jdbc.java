@@ -1,4 +1,4 @@
-package dao;
+package GeneratedId;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public final class Jdbc {
-	private static String url = "jdbc:mysql://localhost:3306/hehe?useUnicode=true&characterEncoding=utf-8";
+	private static String url = "jdbc:mysql://localhost:3306/xscj";
+
+	// 换成自己的密码
 	private static String user = "root";
 	private static String password = "lyz133551";
 

@@ -4,14 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PersonDaoJdbc implements PersonDao {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see dao.PersonDao#findPerson(java.lang.String)
+	 */
 	@Override
 	public Person findPerson(String id) {
-		// TODO Auto-generated method stub
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -36,10 +42,18 @@ public class PersonDaoJdbc implements PersonDao {
 		return null;
 	}
 
+	/**
+	 * 设定职工信息，并返回职工对象
+	 * 
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
 	private Person mappingPerson(ResultSet rs) throws SQLException {
 		Person p = new Person();
-		System.out.println(rs.getString("username"));
-		p.setId(rs.getString("id"));
+		//输出员工姓名
+//		System.out.println(rs.getString("username"));
+		p.setId(rs.getInt("id"));
 		p.setUsername(rs.getString("username"));
 		p.setBirthday(new java.util.Date(rs.getDate("birthday").getTime()));
 		p.setState(rs.getInt("state"));
@@ -48,6 +62,11 @@ public class PersonDaoJdbc implements PersonDao {
 		return p;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see dao.PersonDao#invalidPerson(dao.Person) 员工离职
+	 */
 	@Override
 	public boolean invalidPerson(Person p) {
 		Connection con = null;
@@ -60,65 +79,7 @@ public class PersonDaoJdbc implements PersonDao {
 			con = Jdbc.getCon();
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, 0);// 0代表离职，1代表在职
-			ps.setString(2, p.getId());
-
-			rows = ps.executeUpdate();
-			if (rows > 0) {
-				return true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			Jdbc.free(rs, ps, con);
-		}
-
-		return false;
-	}
-
-	@Override
-	public boolean newPerson(Person p) {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		int rows = 0;
-		String sql = "insert into hehe_user(id,username,birthday,state)"
-				+ "values(?,?,?,?)";
-
-		try {
-			con = Jdbc.getCon();
-			ps = con.prepareStatement(sql);
-			ps.setString(1, p.getId());
-			ps.setString(2, p.getUsername());
-			ps.setDate(3, new java.sql.Date(p.getBirthday().getTime()));
-			ps.setInt(4, p.getState());
-
-			rows = ps.executeUpdate();
-			// System.out.println(rows + "rows effect");
-			if (rows > 0) {
-				return true;
-			}
-		} catch (SQLException e) {
-			// e.printStackTrace();
-			throw new DaoException("未成功登记员工信息");
-		} finally {
-			Jdbc.free(rs, ps, con);
-		}
-		return false;
-	}
-
-	@Override
-	public boolean deletePerson(Person p) {
-		// TODO Auto-generated method stub
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		int rows = 0;
-		String sql = "DELETE FROM hehe_user where id=?";
-
-		try {
-			con = Jdbc.getCon();
-			ps = con.prepareStatement(sql);
-			ps.setString(1, p.getId());
+			ps.setInt(2, p.getId());
 
 			rows = ps.executeUpdate();
 			if (rows > 0) {
@@ -136,7 +97,82 @@ public class PersonDaoJdbc implements PersonDao {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see dao.PersonDao#changeName(dao.Person) 修改名字
+	 * @see dao.PersonDao#newPerson(dao.Person) 新增员工
+	 */
+	@Override
+	public Person newPerson(Person p) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int i = -1;
+		String sql = "insert into hehe_user(username,birthday,state)"
+				+ "values(?,?,?)";
+
+		try {
+			con = Jdbc.getCon();
+			ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			String username = p.getUsername();
+			Date birthday = new java.sql.Date(p.getBirthday().getTime());
+			int state = p.getState();
+
+			ps.setString(1, p.getUsername());
+			ps.setDate(2, new java.sql.Date(p.getBirthday().getTime()));
+			ps.setInt(3, p.getState());
+
+			int rows = ps.executeUpdate();
+			System.out.println(rows + "rows effect");
+			rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				i = rs.getInt(1);
+				System.out.println("generated id= " + i);
+
+				// 返回对象p本身
+				p.setId(i);
+			}
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new DaoException("未成功登记员工信息");
+		} finally {
+			Jdbc.free(rs, ps, con);
+		}
+		return p;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see dao.PersonDao#deletePerson(dao.Person) 移除员工信息
+	 */
+	@Override
+	public boolean deletePerson(Person p) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int rows = 0;
+		String sql = "DELETE FROM hehe_user where id=?";
+
+		try {
+			con = Jdbc.getCon();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, p.getId());
+
+			rows = ps.executeUpdate();
+			if (rows > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Jdbc.free(rs, ps, con);
+		}
+
+		return false;
+	}
+
+	/*
+	 * 
+	 * 修改名字
 	 */
 	public boolean changeName(Person p, String hehename) {
 		Connection con = null;
@@ -148,7 +184,7 @@ public class PersonDaoJdbc implements PersonDao {
 		try {
 			con = Jdbc.getCon();
 			ps = con.prepareStatement(sql);
-			ps.setString(2, p.getId());
+			ps.setInt(2, p.getId());
 			ps.setString(1, hehename);
 
 			rows = ps.executeUpdate();
@@ -163,6 +199,12 @@ public class PersonDaoJdbc implements PersonDao {
 		return false;
 	}
 
+	/**
+	 * 列出员工状态
+	 * 
+	 * @param state
+	 * @return
+	 */
 	public List<Person> findState(String state) {
 		// TODO Auto-generated method stub
 		Connection con = null;
@@ -173,6 +215,7 @@ public class PersonDaoJdbc implements PersonDao {
 			con = Jdbc.getCon();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, state);
+			// 数组lisy
 			List<Person> list = new ArrayList<Person>();
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -182,7 +225,6 @@ public class PersonDaoJdbc implements PersonDao {
 			return list;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			Jdbc.free(rs, ps, con);

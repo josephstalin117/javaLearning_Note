@@ -45,7 +45,6 @@ public class UpdateAccount {
 				temp = 1;
 				recordLog(from, to, num, con);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -57,17 +56,23 @@ public class UpdateAccount {
 
 	}
 
+	/**
+	 * 记录每笔交易发生的时间
+	 * @param from
+	 * @param to
+	 * @param num
+	 * @param con
+	 */
 	public void recordLog(int from, int to, BigDecimal num, Connection con) {
 		PreparedStatement ps = null;
-		ResultSet rs = null;
 
 		try {
 			ps = con.prepareStatement("INSERT INTO transferlog VALUES(?,?,?,?)");
 			ps.setInt(1, from);
 			ps.setInt(2, to);
 			ps.setBigDecimal(3, num);
+			//加入时间戳
 			ps.setTimestamp(4, new Timestamp(System.currentTimeMillis())); 
-//			ps.setDate(4, new java.sql.Date(System.currentTimeMillis()));
 			System.out.println(ps.executeUpdate() + "row effect");
 		} catch (SQLException e) {
 			e.printStackTrace();

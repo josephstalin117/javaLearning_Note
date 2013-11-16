@@ -1,3 +1,5 @@
+package JavaDateType;
+
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,17 +9,22 @@ import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * @author josephstalin 文件读入后并修改时间
+ * 
+ */
 public class JavaDateType {
 	public static void main(String[] args) {
 		read();
 
 	}
 
+	// 建立静态变量cal，用以修改时间类型
 	static Calendar cal = Calendar.getInstance();
 	static BigDecimal salary;
 
 	/**
-	 * 
+	 * 读取文件并修改然后输出
 	 */
 	static void read() {
 		Connection con = null;
@@ -32,10 +39,10 @@ public class JavaDateType {
 
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				System.out.println(rs.getObject("username"));
+				// 获取id
 				int id = rs.getInt("id");
+				// 获取姓名
 				String name = rs.getString("username");
-				int sex = rs.getInt("sex");
 
 				// 生日
 				java.util.Date birthday = rs.getDate("birthday");
@@ -44,7 +51,6 @@ public class JavaDateType {
 				// 薪水
 				salary = rs.getBigDecimal("salary");
 				BigDecimal wakaka = new BigDecimal("100.11");
-				System.out.print(salary);
 				salary = salary.add(wakaka);
 
 				java.sql.Timestamp log = rs.getTimestamp("log");
@@ -53,15 +59,11 @@ public class JavaDateType {
 				// 测试输出
 				System.out.print(id + "\t");
 				System.out.print(name + "\t");
-				System.out.print(sex + "\t");
 				System.out.print(birthday + "\t");
 				System.out.print(score + "\t");
 				System.out.print(salary + "\t");
 				System.out.print(log);
 
-				// 测试java时间戳
-				// System.out.println(rs.getTimestamp("birthday"));
-				// System.out.println(rs.getTime("birthday"));
 				System.out.println(rs.getTime("log"));
 				System.out.println(rs.getDate("log"));
 				System.out.println(d);
@@ -70,7 +72,6 @@ public class JavaDateType {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			// Jdbc.free(rs, sm, con);
 			Jdbc.free(rs, ps, con);
 
 		}
@@ -89,17 +90,12 @@ public class JavaDateType {
 
 			ps.setBigDecimal(2, salary);
 			System.out.print(salary);
-			// BigDecimal
-			// hehe = new java.util.Date().getTime();
-			// System.out.println(hehe);
 
-			// hehe = cal.add(hehe, +1);// 取当前日期的前一天.
-
-			// cal.add(Calendar.DAY_OF_MONTH, +1);// 取当前日期的后一天.
-
+			// 获取当前时间
 			Date date = cal.getTime();
 			ps.setDate(1, new java.sql.Date(date.getTime()));
 
+			// 更新时间
 			rows = ps.executeUpdate();
 			System.out.println(rows + "rows effect");
 		} catch (SQLException e) {

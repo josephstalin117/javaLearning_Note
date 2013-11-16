@@ -18,7 +18,6 @@ public final class Jdbc {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -28,7 +27,6 @@ public final class Jdbc {
 			return (Connection) DriverManager
 					.getConnection(url, user, password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -37,14 +35,13 @@ public final class Jdbc {
 
 	/**
 	 * @param rs
-	 * 释放ResultSet
+	 *            释放ResultSet
 	 */
 	static void freeResultSet(ResultSet rs) {
 		if (rs != null) {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -52,7 +49,7 @@ public final class Jdbc {
 
 	/**
 	 * @param ps
-	 * 释放Statement
+	 *            释放Statement
 	 */
 	static void freeStatement(Statement ps) {
 		try {
@@ -64,13 +61,12 @@ public final class Jdbc {
 
 	/**
 	 * @param con
-	 * 释放Connection
+	 *            释放Connection
 	 */
 	static void freeConnection(Connection con) {
 		try {
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -79,7 +75,7 @@ public final class Jdbc {
 	 * @param rs
 	 * @param sm
 	 * @param con
-	 * 释放全部
+	 *            释放全部
 	 */
 	static void free(ResultSet rs, Statement sm, Connection con) {
 		try {
@@ -87,13 +83,11 @@ public final class Jdbc {
 				rs.close();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				sm.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -101,7 +95,6 @@ public final class Jdbc {
 		try {
 			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
