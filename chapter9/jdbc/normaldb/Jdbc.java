@@ -1,5 +1,4 @@
-package GeneratedId;
-
+package normaldb;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -8,9 +7,9 @@ import java.sql.Statement;
 
 public final class Jdbc {
 	private static String url = "jdbc:mysql://localhost:3306/hehe?useUnicode=true&characterEncoding=utf-8";
-
-	// 换成自己的密码
 	private static String user = "root";
+	
+	//密码换成自己的密码
 	private static String password = "lyz133551";
 
 	private Jdbc() {
@@ -26,7 +25,7 @@ public final class Jdbc {
 		}
 	}
 
-	public static Connection getCon() {
+	static Connection getCon() {
 		try {
 			return (Connection) DriverManager
 					.getConnection(url, user, password);
@@ -37,7 +36,7 @@ public final class Jdbc {
 
 	}
 
-	public static void free(ResultSet rs, Statement sm, Connection con) {
+	static void free(ResultSet rs, Statement sm, Connection con) {
 		try {
 			if (rs != null) {
 				rs.close();
