@@ -1,3 +1,4 @@
+<%@page import="rollName.curd"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
     String path = request.getContextPath();
@@ -6,7 +7,12 @@
 <jsp:include page="headerFooter/header.jsp" />
 <div class="container warp">
     <div class="jumbotron">
-        This is my read page. <br>
+        <%
+            String id = curd.simpleSampling();
+            out.println(id);
+            out.print("号同学被选中");
+            curd.insertLog(id);
+        %>
     </div>
 </div>
 <%@ include file="headerFooter/footer.jsp"%>

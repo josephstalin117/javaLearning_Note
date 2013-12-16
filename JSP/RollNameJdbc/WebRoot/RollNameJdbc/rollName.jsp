@@ -4,5 +4,9 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <jsp:include page="headerFooter/header.jsp" />
-    This is my rollName page. <br>
+	<div class="container warp">
+		<div class="jumbotron">
+			This is my read page. <br>
+		</div>
+	</div>
 <%@ include file="headerFooter/footer.jsp"%>

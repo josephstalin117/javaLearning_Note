@@ -55,13 +55,6 @@ $('.sex').click(function() {
 	var val = $(this).attr('id');
 	$('#selectedsex').val(val);
 });
-
-
-
-var year;
-var month;
-var day;
-
 function initValues() {
 	year = document.getElementById("year");
 	month = document.getElementById("month");

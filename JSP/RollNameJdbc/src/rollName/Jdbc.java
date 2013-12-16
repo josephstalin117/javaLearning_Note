@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public final class Jdbc {
-	private static String url = "jdbc:mysql://localhost:3306/hehe";
+	private static String url = "jdbc:mysql://localhost:3306/hehe?useUnicode=true&characterEncoding=utf-8";
 	private static String user = "root";
 	
 	//改成自己的密码

@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <jsp:include page="headerFooter/header.jsp" />
-	<div class="container">
+	<div class="container warp">
 		<div class="jumbotron">
 			This is my update page. <br>
 		</div>

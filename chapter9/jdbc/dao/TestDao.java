@@ -31,7 +31,7 @@ public class TestDao {
 		// 新增员工
 		Person pp = new Person();
 		pp.setUsername("林永泽");
-		pp.setBirthday(new java.util.Date());
+		pp.setBirthday(new java.util.Date());     
 		pp.setState(1);
 		Person hehe = pdj.newPerson(pp);
 
@@ -56,8 +56,8 @@ public class TestDao {
 		}
 
 		// factory
-		// PersonDao pd = DaoFactory.getInstance().getPersonDao();
-		// Person p = pd.findPerson("1");
-		// System.out.println(p);
+		 PersonDao pd = DaoFactory.getInstance().getPersonDao();
+		 Person p1 = pd.findPerson("1");
+		 System.out.println(p1);
 	}
 }

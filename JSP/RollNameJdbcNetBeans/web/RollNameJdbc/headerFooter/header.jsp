@@ -45,7 +45,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right" id="navRight">
           <li class="active"><a href="#">Default</a></li>
-          <li><a href="#">呵呵</a></li>
+          <li><a href="../RollNameJdbc/indexServlet.jsp">测试servlet</a></li>
           <li><a href="#">哇咔咔</a></li>
         </ul>
       </div>

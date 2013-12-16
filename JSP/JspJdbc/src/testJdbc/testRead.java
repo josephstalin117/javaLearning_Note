@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class testRead {
-	// public static void main(String arg[]) {
-	// List<String> testList = new ArrayList<String>();
-	// testList=heheRead();
-	// System.out.println(heheRead());
-	// System.out.println(testList);
-	// System.out.print(readName());
-	//
-	// }
+	public static void main(String arg[]) {
+		List<String> testList = new ArrayList<String>();
+//		testList = heheRead();
+//		System.out.println(heheRead());
+		System.out.println(testList);
+		System.out.print(readName());
+
+	}
 
 	public static List readName() {
 		return heheRead("SELECT username FROM hehe_user");

@@ -76,5 +76,5 @@
         response.sendRedirect("index.jsp");
     }
 %>
-
+<script src="js/insert.js"></script>
 <%@ include file="headerFooter/footer.jsp"%>

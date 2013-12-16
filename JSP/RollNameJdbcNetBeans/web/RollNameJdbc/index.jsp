@@ -24,9 +24,11 @@
             <h1 class="text-center">开始点名</h1>
         </div>
         <div class="row">
-            <input id="bt"
-                   class="btn btn-lg btn-primary col-md-4 col-md-offset-4"
-                   role="button" type="submit" value="开始点名" />
+            <form role="form" action="rollName.jsp" method="get">
+                <input id="bt"
+                       class="btn btn-lg btn-primary col-md-4 col-md-offset-4"
+                       role="button" type="submit" value="开始点名" />
+            </form>
         </div>
     </div>
 </div>

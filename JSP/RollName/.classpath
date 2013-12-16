@@ -19,5 +19,6 @@
 			<attribute name="owner.project.facets" value="jst.web.jstl"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="F:/学校事务/学业/大三上/java/shared/mysql-connector-java-5.1.27-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
