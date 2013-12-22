@@ -10,7 +10,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>testServlet</servlet-name>
-        <url-pattern>/servlet/testServlet</url-pattern>
+        <url-pattern>/RollNameJdbcNetBeans/servlet/testServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RollNameServlet</servlet-name>

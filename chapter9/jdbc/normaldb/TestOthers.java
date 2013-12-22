@@ -18,14 +18,14 @@ public class TestOthers {
 	public static void main(String[] args) {
 		// 写方法
 
-		// System.out
-		// .println(writeDB(
-		// "insert into hehe_user(id,username,birthday,salary) values(?,?,?,?)",
-		// new Object[] { 10, "林永泽",
-		// new java.sql.Date(System.currentTimeMillis()),
-		// new java.math.BigDecimal("0.5") })
-		// + " rows affect.");
-//		System.out.println(writeDB("delete from hehe_user where id=10", null));
+		 System.out
+		 .println(writeDB(
+		 "insert into hehe_user(id,username,birthday,salary) values(?,?,?,?)",
+		 new Object[] { 10, "林永泽",
+		 new java.sql.Date(System.currentTimeMillis()),
+		 new java.math.BigDecimal("0.5") })
+		 + " rows affect.");
+		System.out.println(writeDB("delete from hehe_user where id=10", null));
 
 		// 读方法
 		System.out.println(readDB("select * from hehe_user", null));

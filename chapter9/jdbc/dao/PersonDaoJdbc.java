@@ -145,7 +145,6 @@ public class PersonDaoJdbc implements PersonDao {
 	 */
 	@Override
 	public boolean deletePerson(Person p) {
-		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
