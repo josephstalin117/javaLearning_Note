@@ -76,8 +76,24 @@ public class CloudStudentDAO implements StudentDAO {
         return null;
     }
 
-    public boolean updateStudent() {
-        return true;
+    public boolean updateStudent(Student s) {
+        String sql = "UPDATE cr_stuinfo SET sid=?,sname=?,sex=?,did=?,spid=?,birthday=?,enrollment=? WHERE uuid=?";
+
+        int uuid = s.getUuid();
+        int sid = s.getSid();
+        String sname = s.getSname();
+        int sex = s.getSex();
+        int did = s.getDid();
+        int spid = s.getSpid();
+        Date birthday = new java.sql.Date(s.getBirthday().getTime());
+        Date enrollment = new java.sql.Date(s.getEnrollment().getTime());
+
+        int i = CloudDAOFactory.writeDB(sql, new Object[]{sid, sname, sex, did, spid, birthday, enrollment, uuid});
+        if (i == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private Student mappingStudent(ResultSet rs) throws SQLException {

@@ -17,8 +17,6 @@ public interface StudentDAO {
 
     public Student findStudent(int uuid);
 
-    public boolean updateStudent();
+    public boolean updateStudent(Student s);
     
-    //public RowSet selectStudent();
-
 }

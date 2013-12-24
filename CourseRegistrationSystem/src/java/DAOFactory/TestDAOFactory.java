@@ -21,7 +21,14 @@ public class TestDAOFactory {
         //测试删除
 //        deleteStudent();
         //测试增加用户
-        insertUser();
+//        insertUser();
+        //更新学生
+//        updateStudent();
+        //更新老师
+//        updateTeacher();
+        //更新老师
+//        updateUser();
+
     }
 
     public static void testFactory() {
@@ -70,17 +77,42 @@ public class TestDAOFactory {
         stuDAO.deleteStudent(stu);
     }
 
+    public static void updateStudent() {
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        StudentDAO stuDAO = cloudFactory.getStudentDAO();
+
+        Student stu = stuDAO.findStudent(1);
+
+        stu.setSname("feifei");
+
+        stuDAO.updateStudent(stu);
+    }
+
+    public static void updateUser() {
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        UserDAO userDAO = cloudFactory.getUserDAO();
+
+        User user = userDAO.findUser(5);
+
+        user.setNackname("feifei");
+
+        userDAO.updateUser(user);
+    }
+
     public static void insertUser() {
 
         DAOFactory cloudFactory = DAOFactory.getDAOFactory();
 
         UserDAO userDAO = cloudFactory.getUserDAO();
         StudentDAO stuDAO = cloudFactory.getStudentDAO();
+        TeacherDAO teaDAO = cloudFactory.getTeacherDAO();
 
         User user = new User();
 
-        user.setNackname("chenlaoshi");
-        user.setRole(1);
+        user.setNackname("baileilei");
+        user.setRole(2);
         user.setEmail("lyz2356002@gmail.com");
         user.setPassword("1234567");
 
@@ -98,6 +130,21 @@ public class TestDAOFactory {
             stu.setEnrollment(new java.util.Date());
 
             stuDAO.insertStudent(stu);
+        }
+        if (user2.getRole() == 2) {
+            Teacher tea = new Teacher();
+
+            tea.setUuid(user2.getUuid());
+            tea.setTid(1);
+            tea.setSex(1);
+            tea.setTname("ningdaye");
+            tea.setSex(1);
+            tea.setBirthday(new java.util.Date());
+            tea.setDid(2);
+            tea.setSpid(2);
+            tea.setProid(2);
+
+            teaDAO.inserTeacher(tea);
         }
 
     }

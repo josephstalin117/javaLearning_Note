@@ -5,7 +5,11 @@
  */
 package DAOFactory;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +36,7 @@ public class CloudUserDAO implements UserDAO {
             String nackname = u.getNackname();
             int role = u.getRole();
             String email = u.getEmail();
-            String password = u.getPassword();
+            String password = getMD5(u.getPassword());
             String picture = u.getPicture();
             String secuquestion = u.getSecuquestion();
             String secuanswer = u.getSecuanswer();
@@ -102,8 +106,24 @@ public class CloudUserDAO implements UserDAO {
         return null;
     }
 
-    public boolean updateUser() {
-        return true;
+    public boolean updateUser(User u) {
+        String sql = "UPDATE cr_account SET nackname=?,role=?,email=?,password=?,picture=?,secuquestion=?,secuanswer=? WHERE uuid=?";
+
+        int uuid = u.getUuid();
+        String nackname = u.getNackname();
+        int role = u.getRole();
+        String email = u.getEmail();
+        String password = getMD5(u.getPassword());
+        String picture = u.getPicture();
+        String secuquestion = u.getSecuquestion();
+        String secuanswer = u.getSecuanswer();
+
+        int i = CloudDAOFactory.writeDB(sql, new Object[]{nackname, role, email, password, picture, secuquestion, secuanswer, uuid});
+        if (i == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private User mappingUser(ResultSet rs) throws SQLException {
@@ -119,5 +139,39 @@ public class CloudUserDAO implements UserDAO {
         u.setSecuanswer(rs.getString("secuanswer"));
 
         return u;
+    }
+
+    /**
+     * MD5 加密
+     */
+    public static String getMD5(String str) {
+        MessageDigest messageDigest = null;
+
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+
+            messageDigest.reset();
+
+            messageDigest.update(str.getBytes("UTF-8"));
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println("NoSuchAlgorithmException caught!");
+            System.exit(-1);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        byte[] byteArray = messageDigest.digest();
+
+        StringBuffer md5StrBuff = new StringBuffer();
+
+        for (int i = 0; i < byteArray.length; i++) {
+            if (Integer.toHexString(0xFF & byteArray[i]).length() == 1) {
+                md5StrBuff.append("0").append(Integer.toHexString(0xFF & byteArray[i]));
+            } else {
+                md5StrBuff.append(Integer.toHexString(0xFF & byteArray[i]));
+            }
+        }
+
+        return md5StrBuff.toString();
     }
 }

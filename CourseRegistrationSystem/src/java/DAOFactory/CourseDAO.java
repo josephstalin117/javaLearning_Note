@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DAOFactory;
 
 /**
@@ -11,5 +10,12 @@ package DAOFactory;
  * @author josephstalin
  */
 public interface CourseDAO {
-    
+
+    public boolean insertCourse(Course s);
+
+    public boolean deleteCourse(Course s);
+
+    public Course findCourse(int cid);
+
+    public boolean updateCourse(Course s);
 }
