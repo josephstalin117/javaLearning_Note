@@ -1,0 +1,14 @@
+batch/*.class
+Clob/*.class
+CURD/*.class
+dao/*.class
+DataSource/*.class
+GeneratedId/*.class
+JavaDateType/*.class
+normaldb/*.class
+photo/*.class
+Procedure/*.class
+scorll/*.class
+.classpath
+.myumldata
+.project

@@ -1,5 +1,5 @@
 
-# ¿Î³ÌÉè¼Æ
+# è¯¾ç¨‹è®¾è®¡
 
 /CourseRegistrationSystem/nbproject/*
 /CourseRegistrationSystem/build/*
@@ -7,17 +7,17 @@
 
 
 
-#Ñ¡¿Î
+#é€‰è¯¾
 /Class/nbproject/*
 /Class/build/*
 *.class
 
-#Ì°³ÔÉß
+#è´ªåƒè›‡
 /MySnakeGame/bin/*
 /MySnakeGame/.classpath
 /MySnakeGame/.project
 
-# ¶íÂŞË¹·½¿é
+# ä¿„ç½—æ–¯æ–¹å—
 /RussiaBlock/JSD1307_Tetris/.settings/*
 /RussiaBlock/JSD1307_Tetris/bin/*
 /RussiaBlock/JSD1307_Tetris/.classpath
