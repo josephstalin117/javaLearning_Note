@@ -27,3 +27,4 @@
 /testStruts/build/
 /testStruts2/nbproject/private/
 /testStruts2/build/
+*.class
