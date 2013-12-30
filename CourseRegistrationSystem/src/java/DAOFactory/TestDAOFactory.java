@@ -28,6 +28,10 @@ public class TestDAOFactory {
 //        updateTeacher();
         //更新老师
 //        updateUser();
+        //增加管理员
+//        insertAmdin();
+        //增加课程计划
+        insertPlan();
 
     }
 
@@ -144,8 +148,45 @@ public class TestDAOFactory {
             tea.setSpid(2);
             tea.setProid(2);
 
-            teaDAO.inserTeacher(tea);
+            teaDAO.insertTeacher(tea);
         }
 
     }
+
+    public static void insertAmdin() {
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        AdminDAO admDAO = cloudFactory.getAdminDAO();
+
+        Admin adm = new Admin();
+
+        adm = admDAO.findAdmin(110);
+
+        admDAO.deleteAdmin(adm);
+    }
+
+    public static void insertPlan() {
+
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        PlanDAO plaDAO = cloudFactory.getPlanDAO();
+
+        Plan pla = new Plan();
+
+        pla.setPid(1);
+        pla.setCid(1);
+        pla.setTid(1);
+        pla.setCapacity(60);
+        pla.setLocation(6814);
+        pla.setPrepare(0);
+        pla.setClasstime(116378);
+
+//        plaDAO.insertPlan(pla);
+        pla = plaDAO.findPlan(1);
+
+        System.err.println(pla.getCid());
+
+        plaDAO.deletePlan(pla);
+    }
+
 }

@@ -1,0 +1,78 @@
+学生信息表 cr_stuInfo D2
+	用户名 uuid int(11) unsigned
+	学号 sid primary key int(11) unique
+	姓名 sname varchar(50)
+	性别 sex tinyint(1)
+	院号 did int(4)
+	专业号 spid int(6)
+	出生日期 birthday date
+	入学时间 enrollment date
+
+教师信息表 cr_teaInfo D1
+	用户名 uuid int(11) unsigned unique
+	教师号 tid primary key int(11) unique
+	姓名 tname varchar(50)
+	性别 sex tinyint(1)
+	出生日期 birthday date
+	院号 did int(4)
+	专业号 spid int(6)
+	职称号 proid tinyint(2)
+
+职称表 cr_professional
+	职称号 proid tinyint(2) primary key
+	职称名 proname varchar(50)
+
+课程表 cr_curriculum D6
+	课程号 cid primary key int(11) unsigned
+	课程名 cname varchar(50)
+	课程简介 cintroduction text
+	课程学分 credit tinyint(2)
+	课时 period int(3)
+	限选专业号 limit int(6) 
+	能否留言 cgestbook tinyint(1)
+	学生评分 mark int(3)
+
+院系表 cr_department
+	院号 did int(4)
+	院名 dname varchar(50)
+
+专业表 cr_specialty
+	专业号 spid int(6)
+	专业名 spname varchar(50)
+	院号 did int(4)
+
+课程留言表 cr_message D9
+	学号 sid primary key int(11)
+	课程号 cid primary key int(11)
+	留言内容 messagecontent text
+	留言时间 messagetime date
+	ip地址 ipaddress varchar(15)
+
+课程计划表 cr_plan D3
+	课程号 cid primary key int(11) 
+	教师号 tid primary key int(11)
+	上课地点 location int(6)
+	开课容量 capacity int(3)
+	预修课程 prepare int(11)
+	上课时间 classtime varchar(10)
+
+选课表 cr_modelselect D5
+	学号 sid primary key int(11)
+	课程号 cid primary key int(11)
+	是否接受 accept tinyint(1)
+	成绩 score int(3)
+
+帐号密码表 cr_account D7
+	帐号 uuid primary key int(11) unsigned
+	昵称 nackname varchar(50)
+	角色 role tiny(1)
+	邮箱 email varchar(50)
+	密码 password char(32)
+	头像 picture varchar(50)
+	安全问题 secuquestion varchar(50)
+	安全问题答案 secuanswer varchar(50)
+
+管理员 cr_admin D10
+	帐号 uuid int(11)
+	用户名 username varchar(50)
+	

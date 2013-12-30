@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 public class CloudTeacherDAO implements TeacherDAO {
 
-    public boolean inserTeacher(Teacher t) {
+    public boolean insertTeacher(Teacher t) {
         int i = -1;
         String sql = "insert into cr_teainfo(uuid,tid,tname,sex,birthday,did,spid,proid) values(?,?,?,?,?,?,?,?)";
 

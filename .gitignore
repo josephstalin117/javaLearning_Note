@@ -21,3 +21,9 @@
 /CourseRegistrationSystem/build/*
 /Class/nbproject/*
 /Class/build/*
+/testSSH/nbproject/private/
+/testSSH/build/
+/testStruts/nbproject/private/
+/testStruts/build/
+/testStruts2/nbproject/private/
+/testStruts2/build/

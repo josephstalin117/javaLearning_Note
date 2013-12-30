@@ -24,6 +24,8 @@ public abstract class DAOFactory {
 
     public abstract UserDAO getUserDAO();
 
+    public abstract PlanDAO getPlanDAO();
+
     public static DAOFactory getDAOFactory() {
         return new CloudDAOFactory();
     }

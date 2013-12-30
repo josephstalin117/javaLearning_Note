@@ -86,7 +86,6 @@ public class CheckEnrol {
     }
 
     public int updatestu(String pw, String id, String e_mail, String tel) {
-        // TODO Auto-generated method stub
         int num = 0;
 
         String sql = "update student set password='" + pw + "',e_mail='"

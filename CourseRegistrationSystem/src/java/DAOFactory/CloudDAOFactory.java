@@ -20,10 +20,12 @@ public class CloudDAOFactory extends DAOFactory {
 
     private static String url = "jdbc:mysql://localhost:3306/coursesystem?useUnicode=true&characterEncoding=utf-8";
     private static String user = "root";
-
     //改成自己的密码
     private static String password = "lyz133551";
 
+    /**
+     * 构造函数
+     */
     public CloudDAOFactory() {
     }
 
@@ -36,7 +38,11 @@ public class CloudDAOFactory extends DAOFactory {
         }
     }
 
-    // method to create Cloudscape connections
+    /**
+     * method to create Cloudscape connections
+     *
+     * @return
+     */
     public static Connection getCon() {
         // Use DRIVER and DBURL to create a connection
         try {
@@ -49,7 +55,7 @@ public class CloudDAOFactory extends DAOFactory {
     }
 
     //free connection
-    static void free(ResultSet rs, Statement sm, Connection con) {
+    public static void free(ResultSet rs, Statement sm, Connection con) {
         try {
             if (rs != null) {
                 rs.close();
@@ -77,7 +83,7 @@ public class CloudDAOFactory extends DAOFactory {
      * @param sql
      * @return
      */
-    static int writeDB(String sql) {
+    public static int writeDB(String sql) {
         return writeDB(sql, null);
     }
 
@@ -87,7 +93,7 @@ public class CloudDAOFactory extends DAOFactory {
      * @param sql
      * @return
      */
-    static int writeDB(String sql, Object[] params) {
+    public static int writeDB(String sql, Object[] params) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -113,27 +119,67 @@ public class CloudDAOFactory extends DAOFactory {
         return rows;
     }
 
+    /**
+     * CloudStudentDAO implements StudentDAO
+     *
+     * @return
+     */
     public StudentDAO getStudentDAO() {
-        // CloudStudentDAO implements StudentDAO
         return new CloudStudentDAO();
     }
 
+    /**
+     * CloudTeacherDAO implements TeacherDAO
+     *
+     * @return
+     */
     public TeacherDAO getTeacherDAO() {
-        // CloudTeacherDAO implements TeacherDAO
         return new CloudTeacherDAO();
     }
 
+    /**
+     * CloudAdminDAO implements AdminDAO
+     *
+     * @return
+     */
     public AdminDAO getAdminDAO() {
-        // CloudAdminDAO implements AdminDAO
         return new CloudAdminDAO();
     }
 
+    /**
+     * CloudCourseDAO implements CourseDAO
+     *
+     * @return
+     */
     public CourseDAO getCourseDAO() {
         return new CloudCourseDAO();
     }
 
+    /**
+     * CloudUserDAO implements UserDAO
+     *
+     * @return
+     */
     public UserDAO getUserDAO() {
         return new CloudUserDAO();
+    }
+
+    /**
+     * CloudUserDAO implements UserDAO
+     *
+     * @return
+     */
+    public PlanDAO getPlanDAO() {
+        return new CloudPlanDAO();
+    }
+
+    /**
+     * CloudUserDAO implements UserDAO
+     *
+     * @return
+     */
+    public ModelDAO getModelDAO() {
+        return new CloudModelDAO();
     }
 
 }
