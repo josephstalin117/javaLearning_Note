@@ -18,4 +18,5 @@ public interface UserDAO {
     public User findUser(int uuid);
 
     public boolean updateUser(User u);
+    
 }

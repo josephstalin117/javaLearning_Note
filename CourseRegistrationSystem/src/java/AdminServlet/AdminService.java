@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAOFactory;
+package AdminServlet;
+
+import DAOFactory.Admin;
+import DAOFactory.AdminDAO;
+import DAOFactory.DAOFactory;
+import DAOFactory.User;
+import DAOFactory.UserDAO;
 
 /**
  *
  * @author josephstalin
  */
-public interface AdminDAO {
-
-    public boolean insertAdmin(Admin a);
-
-    public boolean deleteAdmin(Admin a);
-
-    public Admin findAdmin(int uuid);
+public class AdminService {
     
-    public boolean updateAdmin(Admin a);
+
+
 }

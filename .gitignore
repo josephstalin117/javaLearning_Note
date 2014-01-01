@@ -1,23 +1,24 @@
-
-# ¿Î³ÌÉè¼Æ
+ï»¿
+# ï¿½Î³ï¿½ï¿½ï¿½ï¿½
 
 /CourseRegistrationSystem/nbproject/*
 /CourseRegistrationSystem/build/*
 /CourseRegistrationSystem/build.xml
+/CourseRegistrationSystem/dist/
+/CourseRegistrationSystem/test/*
 
 
-
-#Ñ¡¿Î
+#Ñ¡ï¿½ï¿½
 /Class/nbproject/*
 /Class/build/*
 *.class
 
-#Ì°³ÔÉß
+#Ì°ï¿½ï¿½ï¿½ï¿½
 /MySnakeGame/bin/*
 /MySnakeGame/.classpath
 /MySnakeGame/.project
 
-# ¶íÂÞË¹·½¿é
+# ï¿½ï¿½ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½ï¿½
 /RussiaBlock/JSD1307_Tetris/.settings/*
 /RussiaBlock/JSD1307_Tetris/bin/*
 /RussiaBlock/JSD1307_Tetris/.classpath

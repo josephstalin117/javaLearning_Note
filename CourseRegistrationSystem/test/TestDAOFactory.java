@@ -3,8 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAOFactory;
 
+import DAOFactory.Admin;
+import DAOFactory.AdminDAO;
+import DAOFactory.DAOFactory;
+import DAOFactory.Model;
+import DAOFactory.ModelDAO;
+import DAOFactory.Plan;
+import DAOFactory.PlanDAO;
+import DAOFactory.Student;
+import DAOFactory.StudentDAO;
+import DAOFactory.Teacher;
+import DAOFactory.TeacherDAO;
+import DAOFactory.User;
+import DAOFactory.UserDAO;
 import java.util.Date;
 
 /**
@@ -21,7 +33,7 @@ public class TestDAOFactory {
         //测试删除
 //        deleteStudent();
         //测试增加用户
-//        insertUser();
+        insertUser();
         //更新学生
 //        updateStudent();
         //更新老师
@@ -31,7 +43,11 @@ public class TestDAOFactory {
         //增加管理员
 //        insertAmdin();
         //增加课程计划
-        insertPlan();
+//        insertPlan();
+        //增加选课
+//        insertModel();
+        //测试教师查找
+//        loginTeacher();
 
     }
 
@@ -47,6 +63,16 @@ public class TestDAOFactory {
 
         System.err.println((stu.getBirthday()));
 
+    }
+
+    public static void loginTeacher() {
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        TeacherDAO teaDAO = cloudFactory.getTeacherDAO();
+
+        Teacher tea = teaDAO.loginTeacher(1);
+        
+        System.err.println(tea.getBirthday());
     }
 
     public static void insertStudent() {
@@ -115,10 +141,10 @@ public class TestDAOFactory {
 
         User user = new User();
 
-        user.setNackname("baileilei");
+        user.setNackname("testUser");
         user.setRole(2);
         user.setEmail("lyz2356002@gmail.com");
-        user.setPassword("1234567");
+        user.setPassword("123456");
 
         User user2 = userDAO.insertUser(user);
         if (user2.getRole() == 1) {
@@ -139,7 +165,7 @@ public class TestDAOFactory {
             Teacher tea = new Teacher();
 
             tea.setUuid(user2.getUuid());
-            tea.setTid(1);
+            tea.setTid(2);
             tea.setSex(1);
             tea.setTname("ningdaye");
             tea.setSex(1);
@@ -187,6 +213,30 @@ public class TestDAOFactory {
         System.err.println(pla.getCid());
 
         plaDAO.deletePlan(pla);
+    }
+
+    public static void insertModel() {
+
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        ModelDAO modDAO = cloudFactory.getModelDAO();
+
+        Model mod = new Model();
+
+        mod.setMid(1);
+        mod.setSid(1);
+        mod.setCid(1);
+        mod.setAccept(1);
+        mod.setScore(60);
+
+//        modDAO.insertModel(mod);
+        mod = modDAO.findModel(2);
+
+        System.err.println(mod.getMid());
+
+//        mod.setCid(2);
+//        modDAO.updateModel(mod);
+//        modDAO.deleteModel(mod);
     }
 
 }

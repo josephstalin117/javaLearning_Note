@@ -16,6 +16,8 @@ public interface StudentDAO {
     public boolean deleteStudent(Student s);
 
     public Student findStudent(int uuid);
+    
+    public Student loginStudent(int sid);
 
     public boolean updateStudent(Student s);
     

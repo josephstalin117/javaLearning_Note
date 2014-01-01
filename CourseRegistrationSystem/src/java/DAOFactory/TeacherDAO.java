@@ -16,6 +16,8 @@ public interface TeacherDAO {
     public boolean deleteTeacher(Teacher s);
 
     public Teacher findTeacher(int uuid);
+    
+    public Teacher loginTeacher(int tid);
 
     public boolean updateTeacher(Teacher t);
 

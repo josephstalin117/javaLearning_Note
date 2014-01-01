@@ -77,7 +77,7 @@ public class CloudCourseDAO implements CourseDAO {
     }
 
     public boolean updateCourse(Course c) {
-        String sql = "UPDATE cr_stuinfo SET cname=?,cintroduction=?,credit=?,period=?,spid=?,cgestbook=?,mark=? WHERE cid=?";
+        String sql = "UPDATE cr_curriculum SET cname=?,cintroduction=?,credit=?,period=?,spid=?,cgestbook=?,mark=? WHERE cid=?";
 
         int cid = c.getCid();
         String cname = c.getCname();
