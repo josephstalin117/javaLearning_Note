@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -68,16 +71,44 @@ public class CloudModelDAO implements ModelDAO {
         return null;
     }
 
+    public List<Model> displayModel() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        CachedRowSet cr = null;
+        String sql = "select * from cr_modelselect";
+
+        try {
+            con = CloudDAOFactory.getCon();
+            ps = con.prepareStatement(sql);
+
+            // 数组lisy
+            List<Model> list = new ArrayList<Model>();
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(mappingModel(rs));
+            }
+            return list;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CloudDAOFactory.free(rs, ps, con);
+
+        }
+        return null;
+    }
+
     public boolean updateModel(Model m) {
-        String sql = "UPDATE cr_modelselect SET sid=?,cid=?,accept=?,score=? WHERE mid=?";
+        String sql = "UPDATE cr_modelselect SET sid=?,cid=?,score=? WHERE mid=?";
 
         int mid = m.getMid();
         int sid = m.getSid();
         int cid = m.getCid();
-        int accept = m.getAccept();
         int score = m.getScore();
 
-        int i = CloudDAOFactory.writeDB(sql, new Object[]{sid, cid, accept, score, mid});
+        int i = CloudDAOFactory.writeDB(sql, new Object[]{sid, cid, score, mid});
         if (i == 1) {
             return true;
         } else {

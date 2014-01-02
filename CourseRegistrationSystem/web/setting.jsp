@@ -1,9 +1,8 @@
 <%-- 
-    Document   : admin
-    Created on : Dec 31, 2013, 3:43:04 PM
+    Document   : setting.jsp
+    Created on : Jan 1, 2014, 4:13:58 PM
     Author     : josephstalin
 --%>
-
 <%@page import="CloudServlet.UserService"%>
 <%@page import="CloudServlet.LoginBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,9 +10,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/offcanvas.css" rel="stylesheet">
-        <title>管理员界面</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/offcanvas.css" rel="stylesheet">
+        <title>个人设置</title>
         <%
             LoginBean login = (LoginBean) session.getAttribute("login");
 
@@ -52,26 +51,37 @@
                     <p class="pull-right visible-xs">
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
-                    <div class="jumbotron">
-                        <div class="col-xs-6 col-md-3">
-                            <a href="#" class="thumbnail">
-                                <img data-src="holder.js/100%x180" alt="..." src="../images/avatar.png">
-                            </a>
-                        </div>
-
-                        <h1>Hello, <%=(String) UserService.getNackname(login.getUuid())%></h1>
-                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img data-src="holder.js/100%x180" alt="..." src="<%=(String) UserService.getPicture(login.getUuid())%>">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <form role="form" action="UpdateUserServlet" method="get" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputCid">修改密码</label>
+                                <input type="password" class="form-control" id="inputPassword" placeholder="修改密码" name="password">
+                                <input type="hidden" class="form-control" id="inputUuid" name="uuid" value="<%=login.getUuid()%>">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCname">修改昵称</label>
+                                <input type="text" class="form-control" id="inputNackname" placeholder="修改昵称" name="nackname">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+                        </form>
                     </div>
                 </div><!--/span-->
 
+
+
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">管理员主页</a>
+                        <a href="admin/admin.jsp" class="list-group-item">管理员主页</a>
                         <a href="getStudent.jsp" class="list-group-item">学生管理</a>
                         <a href="getTeacher.jsp" class="list-group-item">教师管理</a>
                         <a href="getCourse.jsp" class="list-group-item">课程管理</a>
                         <a href="getPlan.jsp" class="list-group-item">课程计划管理</a>
-                        <a href="../setting.jsp" class="list-group-item">个人设置</a>
+                        <a href="#" class="list-group-item active">个人设置</a>
                     </div>
                 </div><!--/span-->
             </div><!--/row-->
@@ -84,9 +94,9 @@
 
         </div><!--/.container-->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="../js/jquery.js"></script>
+        <script src="js/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="../js/bootstrap.min.js"></script>
-        <script src="../js/offcanvas.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/offcanvas.js"></script>
     </body>
 </html>

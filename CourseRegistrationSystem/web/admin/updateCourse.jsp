@@ -1,10 +1,8 @@
 <%-- 
-    Document   : admin
-    Created on : Dec 31, 2013, 3:43:04 PM
+    Document   : updateCourse
+    Created on : Jan 1, 2014, 8:01:57 PM
     Author     : josephstalin
 --%>
-
-<%@page import="CloudServlet.UserService"%>
 <%@page import="CloudServlet.LoginBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/offcanvas.css" rel="stylesheet">
-        <title>管理员界面</title>
+        <title>JSP Page</title>
         <%
             LoginBean login = (LoginBean) session.getAttribute("login");
 
@@ -37,12 +35,16 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">主页</a></li>
+                        <li class="active"><a href="amdin.jsp">主页</a></li>
                         <li><a href="../loginOut.jsp">注销</a></li>
                     </ul>
                 </div><!-- /.nav-collapse -->
             </div><!-- /.container -->
         </div><!-- /.navbar -->
+
+        <%
+            String cid = request.getParameter("cid");
+        %>
 
         <div class="container">
 
@@ -53,31 +55,40 @@
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
                     <div class="jumbotron">
-                        <div class="col-xs-6 col-md-3">
-                            <a href="#" class="thumbnail">
-                                <img data-src="holder.js/100%x180" alt="..." src="../images/avatar.png">
-                            </a>
-                        </div>
+                        <form role="form" action="../UpdateCourseServlet" method="post" class="form-horizontal">
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" id="inputSid" placeholder="课程号" name="cid" value="<%=cid%>">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCname">课程名</label>
+                                <input type="text" class="form-control" id="inputSname" placeholder="课程名" name="cname">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDid">课程简介</label>
+                                <input type="text" class="form-control" id="inputDid" placeholder="课程简介" name="cintroduction">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSpid">学分</label>
+                                <input type="text" class="form-control" id="inputSpid" placeholder="学分" name="credit">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+                        </form>
 
-                        <h1>Hello, <%=(String) UserService.getNackname(login.getUuid())%></h1>
-                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
                     </div>
                 </div><!--/span-->
 
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">管理员主页</a>
-                        <a href="getStudent.jsp" class="list-group-item">学生管理</a>
-                        <a href="getTeacher.jsp" class="list-group-item">教师管理</a>
-                        <a href="getCourse.jsp" class="list-group-item">课程管理</a>
-                        <a href="getPlan.jsp" class="list-group-item">课程计划管理</a>
-                        <a href="../setting.jsp" class="list-group-item">个人设置</a>
+                        <a href="admin.jsp" class="list-group-item">管理员主页</a>
+                        <a href="getStudent.jsp" class="list-group-item">学生列表</a>
+                        <a href="addStudent.jsp" class="list-group-item">添加学生</a>
+                        <a href="findStudent.jsp" class="list-group-item">查找学生</a>
                     </div>
                 </div><!--/span-->
             </div><!--/row-->
 
 
-            <footer class="navbar-fixed-bottom">
+            <footer class="navbar-fixed">
                 <hr>
                 <p>&copy; Company 2013</p>
             </footer>

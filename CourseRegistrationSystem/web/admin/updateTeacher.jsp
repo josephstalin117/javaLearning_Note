@@ -1,9 +1,8 @@
 <%-- 
-    Document   : addStudent
-    Created on : Jan 1, 2014, 8:58:51 AM
+    Document   : updateTeacher
+    Created on : Jan 1, 2014, 4:32:52 PM
     Author     : josephstalin
 --%>
-
 <%@page import="CloudServlet.LoginBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,6 +43,10 @@
             </div><!-- /.container -->
         </div><!-- /.navbar -->
 
+        <%
+            String uuid = request.getParameter("uuid");
+        %>
+
         <div class="container">
 
             <div class="row row-offcanvas row-offcanvas-right">
@@ -53,14 +56,13 @@
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
                     <div class="jumbotron">
-                        <form role="form" action="../AddStudentServlet" method="post" class="form-horizontal">
+                        <form role="form" action="../UpdateTeacherServlet" method="post" class="form-horizontal">
                             <div class="form-group">
-                                <label for="inputSid">学号</label>
-                                <input type="text" class="form-control" id="inputSid" placeholder="学号" name="sid">
+                                <input type="hidden" class="form-control" id="inputuuid" name="uuid" value="<%=uuid%>">
                             </div>
                             <div class="form-group">
                                 <label for="inputSname">姓名</label>
-                                <input type="text" class="form-control" id="inputSname" placeholder="姓名" name="sname">
+                                <input type="text" class="form-control" id="inputSname" placeholder="姓名" name="tname">
                             </div>
                             <div class="form-group">
                                 <label for="inputSex">性别</label>
@@ -78,18 +80,13 @@
                                 <input type="text" class="form-control" id="inputSpid" placeholder="院号" name="spid">
                             </div>
                             <div class="form-group">
+                                <label for="inputProid">职称号</label>
+                                <input type="text" class="form-control" id="inputSpid" placeholder="职称号" name="proid">
+                            </div>
+                            <div class="form-group">
                                 <label for="dtp_input2" class="col-md-2 control-label">出生日期</label>
                                 <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                     <input class="form-control" size="16" type="text" id="inputBirthday" name="birthday" value="" readonly>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                </div>
-                                <input type="hidden" id="dtp_input2" value="" /><br/>
-                            </div>
-                            <div class="form-group">
-                                <label for="dtp_input2" class="col-md-2 control-label">入学时间</label>
-                                <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                    <input class="form-control" size="16" type="text" id="inputEnrollment" value="" name="enrollment" readonly>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
@@ -106,9 +103,9 @@
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     <div class="list-group">
                         <a href="admin.jsp" class="list-group-item">管理员主页</a>
-                        <a href="getStudent.jsp" class="list-group-item">学生列表</a>
-                        <a href="#" class="list-group-item active">添加学生</a>
-                        <a href="findStudent.jsp" class="list-group-item">查找学生</a>
+                        <a href="getTeacher.jsp" class="list-group-item">教师列表</a>
+                        <a href="addTeacher.jsp" class="list-group-item">添加教师</a>
+                        <a href="findTeacher.jsp" class="list-group-item">查找教师</a>
                     </div>
                 </div><!--/span-->
             </div><!--/row-->
@@ -120,14 +117,16 @@
             </footer>
 
         </div><!--/.container-->
+
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="../js/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/offcanvas.js"></script>
+
         <script src="../js/bootstrap-datetimepicker.min.js"></script>
         <script src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
-        <script src="../js/addStudent.js"></script>
+        <script src="../js/updateStudent.js"></script>
         <script type="text/javascript">
             $('.form_date').datetimepicker({
                 language: 'fr',

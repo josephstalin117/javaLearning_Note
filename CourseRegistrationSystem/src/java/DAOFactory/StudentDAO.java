@@ -5,6 +5,8 @@
  */
 package DAOFactory;
 
+import java.util.List;
+
 /**
  *
  * @author josephstalin
@@ -17,8 +19,12 @@ public interface StudentDAO {
 
     public Student findStudent(int uuid);
     
+    public List<Student> displayStudent();
+    
     public Student loginStudent(int sid);
 
     public boolean updateStudent(Student s);
+    
+    
     
 }

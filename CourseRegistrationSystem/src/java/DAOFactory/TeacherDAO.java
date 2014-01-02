@@ -5,6 +5,8 @@
  */
 package DAOFactory;
 
+import java.util.List;
+
 /**
  *
  * @author josephstalin
@@ -16,7 +18,9 @@ public interface TeacherDAO {
     public boolean deleteTeacher(Teacher s);
 
     public Teacher findTeacher(int uuid);
-    
+
+    public List<Teacher> displayTeacher();
+
     public Teacher loginTeacher(int tid);
 
     public boolean updateTeacher(Teacher t);

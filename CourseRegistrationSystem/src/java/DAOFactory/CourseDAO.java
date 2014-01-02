@@ -5,6 +5,8 @@
  */
 package DAOFactory;
 
+import java.util.List;
+
 /**
  *
  * @author josephstalin
@@ -16,6 +18,8 @@ public interface CourseDAO {
     public boolean deleteCourse(Course s);
 
     public Course findCourse(int cid);
+
+    public List<Course> displayCourse();
 
     public boolean updateCourse(Course s);
 }

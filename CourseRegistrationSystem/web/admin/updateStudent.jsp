@@ -1,6 +1,6 @@
 <%-- 
-    Document   : addStudent
-    Created on : Jan 1, 2014, 8:58:51 AM
+    Document   : updateStudent
+    Created on : Jan 1, 2014, 9:16:10 AM
     Author     : josephstalin
 --%>
 
@@ -44,6 +44,10 @@
             </div><!-- /.container -->
         </div><!-- /.navbar -->
 
+        <%
+            String uuid = request.getParameter("uuid");
+        %>
+
         <div class="container">
 
             <div class="row row-offcanvas row-offcanvas-right">
@@ -53,10 +57,9 @@
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
                     <div class="jumbotron">
-                        <form role="form" action="../AddStudentServlet" method="post" class="form-horizontal">
+                        <form role="form" action="../UpdateStudentServlet" method="post" class="form-horizontal">
                             <div class="form-group">
-                                <label for="inputSid">学号</label>
-                                <input type="text" class="form-control" id="inputSid" placeholder="学号" name="sid">
+                                <input type="hidden" class="form-control" id="inputSid" placeholder="学号" name="uuid" value="<%=uuid%>">
                             </div>
                             <div class="form-group">
                                 <label for="inputSname">姓名</label>
@@ -107,7 +110,7 @@
                     <div class="list-group">
                         <a href="admin.jsp" class="list-group-item">管理员主页</a>
                         <a href="getStudent.jsp" class="list-group-item">学生列表</a>
-                        <a href="#" class="list-group-item active">添加学生</a>
+                        <a href="addStudent.jsp" class="list-group-item">添加学生</a>
                         <a href="findStudent.jsp" class="list-group-item">查找学生</a>
                     </div>
                 </div><!--/span-->
@@ -127,7 +130,7 @@
         <script src="../js/offcanvas.js"></script>
         <script src="../js/bootstrap-datetimepicker.min.js"></script>
         <script src="../js/bootstrap-datetimepicker.zh-CN.js"></script>
-        <script src="../js/addStudent.js"></script>
+        <script src="../js/updateStudent.js"></script>
         <script type="text/javascript">
             $('.form_date').datetimepicker({
                 language: 'fr',

@@ -5,6 +5,8 @@
  */
 package DAOFactory;
 
+import java.util.List;
+
 /**
  *
  * @author josephstalin
@@ -16,6 +18,8 @@ public interface PlanDAO {
     public boolean deletePlan(Plan p);
 
     public Plan findPlan(int pid);
+
+    public List<Plan> displayPlan();
 
     public boolean updatePlan(Plan p);
 }

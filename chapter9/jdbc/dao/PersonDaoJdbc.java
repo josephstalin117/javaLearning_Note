@@ -205,7 +205,6 @@ public class PersonDaoJdbc implements PersonDao {
 	 * @return
 	 */
 	public List<Person> findState(String state) {
-		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;

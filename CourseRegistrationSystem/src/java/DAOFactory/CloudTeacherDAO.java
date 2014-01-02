@@ -10,6 +10,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -74,8 +77,37 @@ public class CloudTeacherDAO implements TeacherDAO {
         }
         return null;
     }
-    
-    public Teacher loginTeacher(int tid){
+
+    public List<Teacher> displayTeacher() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        CachedRowSet cr = null;
+        String sql = "select * from cr_teainfo";
+
+        try {
+            con = CloudDAOFactory.getCon();
+            ps = con.prepareStatement(sql);
+
+            // 数组lisy
+            List<Teacher> list = new ArrayList<Teacher>();
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(mappingTeacher(rs));
+            }
+            return list;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CloudDAOFactory.free(rs, ps, con);
+
+        }
+        return null;
+    }
+
+    public Teacher loginTeacher(int tid) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

@@ -5,6 +5,8 @@
  */
 package DAOFactory;
 
+import java.util.List;
+
 /**
  *
  * @author josephstalin
@@ -16,6 +18,8 @@ public interface ModelDAO {
     public boolean deleteModel(Model m);
 
     public Model findModel(int mid);
+
+    public List<Model> displayModel();
 
     public boolean updateModel(Model m);
 }

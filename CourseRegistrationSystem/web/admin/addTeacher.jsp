@@ -1,9 +1,8 @@
 <%-- 
-    Document   : addStudent
-    Created on : Jan 1, 2014, 8:58:51 AM
+    Document   : addTeacher
+    Created on : Jan 1, 2014, 5:12:23 PM
     Author     : josephstalin
 --%>
-
 <%@page import="CloudServlet.LoginBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,7 +12,7 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/offcanvas.css" rel="stylesheet">
         <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-        <title>JSP Page</title>
+        <title>添加教师</title>
         <%
             LoginBean login = (LoginBean) session.getAttribute("login");
 
@@ -24,6 +23,7 @@
         %>
     </head>
     <body>
+
         <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -53,14 +53,14 @@
                         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
                     </p>
                     <div class="jumbotron">
-                        <form role="form" action="../AddStudentServlet" method="post" class="form-horizontal">
+                        <form role="form" action="../AddTeacherServlet" method="post" class="form-horizontal">
                             <div class="form-group">
-                                <label for="inputSid">学号</label>
-                                <input type="text" class="form-control" id="inputSid" placeholder="学号" name="sid">
+                                <label for="inputSid">教师号</label>
+                                <input type="text" class="form-control" id="inputSid" placeholder="学号" name="tid">
                             </div>
                             <div class="form-group">
                                 <label for="inputSname">姓名</label>
-                                <input type="text" class="form-control" id="inputSname" placeholder="姓名" name="sname">
+                                <input type="text" class="form-control" id="inputSname" placeholder="姓名" name="tname">
                             </div>
                             <div class="form-group">
                                 <label for="inputSex">性别</label>
@@ -78,6 +78,10 @@
                                 <input type="text" class="form-control" id="inputSpid" placeholder="院号" name="spid">
                             </div>
                             <div class="form-group">
+                                <label for="inputProid">职称号</label>
+                                <input type="text" class="form-control" id="inputSpid" placeholder="职称号" name="proid">
+                            </div>
+                            <div class="form-group">
                                 <label for="dtp_input2" class="col-md-2 control-label">出生日期</label>
                                 <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                     <input class="form-control" size="16" type="text" id="inputBirthday" name="birthday" value="" readonly>
@@ -86,17 +90,6 @@
                                 </div>
                                 <input type="hidden" id="dtp_input2" value="" /><br/>
                             </div>
-                            <div class="form-group">
-                                <label for="dtp_input2" class="col-md-2 control-label">入学时间</label>
-                                <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                    <input class="form-control" size="16" type="text" id="inputEnrollment" value="" name="enrollment" readonly>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                </div>
-                                <input type="hidden" id="dtp_input2" value="" /><br/>
-                            </div>
-
-
                             <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
                         </form>
 
@@ -106,9 +99,9 @@
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     <div class="list-group">
                         <a href="admin.jsp" class="list-group-item">管理员主页</a>
-                        <a href="getStudent.jsp" class="list-group-item">学生列表</a>
-                        <a href="#" class="list-group-item active">添加学生</a>
-                        <a href="findStudent.jsp" class="list-group-item">查找学生</a>
+                        <a href="getTeacher.jsp" class="list-group-item">教师列表</a>
+                        <a href="#" class="list-group-item active">添加教师</a>
+                        <a href="findStudent.jsp" class="list-group-item">查找教师</a>
                     </div>
                 </div><!--/span-->
             </div><!--/row-->
@@ -120,6 +113,7 @@
             </footer>
 
         </div><!--/.container-->
+
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="../js/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->

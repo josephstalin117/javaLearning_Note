@@ -10,6 +10,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -19,18 +22,14 @@ public class CloudCourseDAO implements CourseDAO {
 
     public boolean insertCourse(Course c) {
         int i = -1;
-        String sql = "insert into cr_curriculum(cid,cname,cintroduction,credit,period,limit,cgesbook,mark) values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into cr_curriculum(cid,cname,cintroduction,credit) values(?,?,?,?)";
 
         int cid = c.getCid();
         String cname = c.getCname();
         String cintroduction = c.getCintroduction();
         int credit = c.getCredit();
-        int period = c.getPeriod();
-        int limit = c.getLimit();
-        int cgesbook = c.getCgestbook();
-        int mark = c.getMark();
 
-        i = CloudDAOFactory.writeDB(sql, new Object[]{cid, cname, cintroduction, credit, period, limit, cgesbook, mark}); //设定输入数据
+        i = CloudDAOFactory.writeDB(sql, new Object[]{cid, cname, cintroduction, credit}); //设定输入数据
         if (i == 1) {
             return true;
         } else {
@@ -76,19 +75,44 @@ public class CloudCourseDAO implements CourseDAO {
         return null;
     }
 
+    public List<Course> displayCourse() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        CachedRowSet cr = null;
+        String sql = "select * from cr_curriculum";
+
+        try {
+            con = CloudDAOFactory.getCon();
+            ps = con.prepareStatement(sql);
+
+            // 数组lisy
+            List<Course> list = new ArrayList<Course>();
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(mappingCourse(rs));
+            }
+            return list;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CloudDAOFactory.free(rs, ps, con);
+
+        }
+        return null;
+    }
+
     public boolean updateCourse(Course c) {
-        String sql = "UPDATE cr_curriculum SET cname=?,cintroduction=?,credit=?,period=?,spid=?,cgestbook=?,mark=? WHERE cid=?";
+        String sql = "UPDATE cr_curriculum SET cname=?,cintroduction=?,credit=? WHERE cid=?";
 
         int cid = c.getCid();
         String cname = c.getCname();
         String cintroduction = c.getCintroduction();
         int credit = c.getCredit();
-        int period = c.getPeriod();
-        int spid = c.getLimit();
-        int cgestbook = c.getCgestbook();
-        int mark = c.getMark();
 
-        int i = CloudDAOFactory.writeDB(sql, new Object[]{cname, cintroduction, credit, period, spid, cgestbook, mark, cid});
+        int i = CloudDAOFactory.writeDB(sql, new Object[]{cname, cintroduction, credit, cid});
         if (i == 1) {
             return true;
         } else {

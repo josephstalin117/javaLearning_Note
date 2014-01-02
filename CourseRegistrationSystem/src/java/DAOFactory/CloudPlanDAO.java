@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -18,17 +21,16 @@ public class CloudPlanDAO implements PlanDAO {
 
     public boolean insertPlan(Plan p) {
         int i = -1;
-        String sql = "insert into cr_plan(pid,cid,tid,location,capacity,prepare,classtime) values(?,?,?,?,?,?,?)";
+        String sql = "insert into cr_plan(pid,cid,tid,location,capacity,classtime) values(?,?,?,?,?,?)";
 
         int pid = p.getPid();
         int cid = p.getCid();
         int tid = p.getTid();
         int location = p.getLocation();
         int capacity = p.getCapacity();
-        int prepare = p.getPrepare();
         int classtime = p.getClasstime();
 
-        i = CloudDAOFactory.writeDB(sql, new Object[]{pid, cid, tid, location, capacity, prepare, classtime}); //设定输入数据
+        i = CloudDAOFactory.writeDB(sql, new Object[]{pid, cid, tid, location, capacity, classtime}); //设定输入数据
         if (i == 1) {
             return true;
         } else {
@@ -65,6 +67,35 @@ public class CloudPlanDAO implements PlanDAO {
             if (rs.next()) {
                 return mappingPlan(rs);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CloudDAOFactory.free(rs, ps, con);
+
+        }
+        return null;
+    }
+
+    public List<Plan> displayPlan() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        CachedRowSet cr = null;
+        String sql = "select * from cr_plan";
+
+        try {
+            con = CloudDAOFactory.getCon();
+            ps = con.prepareStatement(sql);
+
+            // 数组list
+            List<Plan> list = new ArrayList<Plan>();
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(mappingPlan(rs));
+            }
+            return list;
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

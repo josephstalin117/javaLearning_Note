@@ -26,28 +26,28 @@ public class CloudUserDAO implements UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         int i = -1;
-        String sql = "insert into cr_account(nackname,role,email,password,picture,secuquestion,secuanswer) values(?,?,?,?,?,?,?)";
+        String sql = "insert into cr_account(role) values(?)";
 
         try {
             con = CloudDAOFactory.getCon();
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             //设定属性
-            String nackname = u.getNackname();
+//            String nackname = u.getNackname();
             int role = u.getRole();
-            String email = u.getEmail();
-            String password = getMD5(u.getPassword());
-            String picture = u.getPicture();
-            String secuquestion = u.getSecuquestion();
-            String secuanswer = u.getSecuanswer();
+//            String email = u.getEmail();
+//            String password = getMD5(u.getPassword());
+//            String picture = u.getPicture();
+//            String secuquestion = u.getSecuquestion();
+//            String secuanswer = u.getSecuanswer();
 
-            ps.setString(1, nackname);
-            ps.setInt(2, role);
-            ps.setString(3, email);
-            ps.setString(4, password);
-            ps.setString(5, picture);
-            ps.setString(6, secuquestion);
-            ps.setString(7, secuanswer);
+//            ps.setString(1, nackname);
+            ps.setInt(1, role);
+//            ps.setString(3, email);
+//            ps.setString(4, password);
+//            ps.setString(5, picture);
+//            ps.setString(6, secuquestion);
+//            ps.setString(7, secuanswer);
 
             int rows = ps.executeUpdate();
             System.out.println(rows + "rows effect");

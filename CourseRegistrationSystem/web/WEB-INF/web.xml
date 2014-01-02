@@ -4,13 +4,109 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>CloudServlet.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddStudentServlet</servlet-name>
+        <servlet-class>AdminServlet.AddStudentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateStudentServlet</servlet-name>
+        <servlet-class>AdminServlet.UpdateStudentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteStudentServlet</servlet-name>
+        <servlet-class>AdminServlet.DeleteStudentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTeacherServlet</servlet-name>
+        <servlet-class>AdminServlet.DeleteTeacherServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddTeacherServlet</servlet-name>
+        <servlet-class>AdminServlet.AddTeacherServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateTeacherServlet</servlet-name>
+        <servlet-class>AdminServlet.UpdateTeacherServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddCourseServlet</servlet-name>
+        <servlet-class>AdminServlet.AddCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCourseServlet</servlet-name>
+        <servlet-class>AdminServlet.DeleteCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCourseServlet</servlet-name>
+        <servlet-class>AdminServlet.UpdateCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePlanServlet</servlet-name>
+        <servlet-class>AdminServlet.DeletePlanServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddPlanServlet</servlet-name>
+        <servlet-class>AdminServlet.AddPlanServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <servlet-class>CloudServlet.UpdateUserServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
-    <session-config>
+    <servlet-mapping>
+        <servlet-name>AddStudentServlet</servlet-name>
+        <url-pattern>/AddStudentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStudentServlet</servlet-name>
+        <url-pattern>/UpdateStudentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteStudentServlet</servlet-name>
+        <url-pattern>/DeleteStudentServlet</url-pattern>
+    </servlet-mapping>
+    <!--    <session-config>
         <session-timeout>
             120
         </session-timeout>
-    </session-config>
+    </session-config>-->
+    <servlet-mapping>
+        <servlet-name>DeleteTeacherServlet</servlet-name>
+        <url-pattern>/DeleteTeacherServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTeacherServlet</servlet-name>
+        <url-pattern>/AddTeacherServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTeacherServlet</servlet-name>
+        <url-pattern>/UpdateTeacherServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCourseServlet</servlet-name>
+        <url-pattern>/AddCourseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCourseServlet</servlet-name>
+        <url-pattern>/DeleteCourseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCourseServlet</servlet-name>
+        <url-pattern>/UpdateCourseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePlanServlet</servlet-name>
+        <url-pattern>/DeletePlanServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPlanServlet</servlet-name>
+        <url-pattern>/AddPlanServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <url-pattern>/UpdateUserServlet</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -10,6 +10,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -67,6 +70,35 @@ public class CloudStudentDAO implements StudentDAO {
             if (rs.next()) {
                 return mappingStudent(rs);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CloudDAOFactory.free(rs, ps, con);
+
+        }
+        return null;
+    }
+
+    public List<Student> displayStudent() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        CachedRowSet cr = null;
+        String sql = "select * from cr_stuinfo";
+
+        try {
+            con = CloudDAOFactory.getCon();
+            ps = con.prepareStatement(sql);
+
+            // 数组lisy
+            List<Student> list = new ArrayList<Student>();
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(mappingStudent(rs));
+            }
+            return list;
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

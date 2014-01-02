@@ -24,8 +24,23 @@ public class UserService {
         User use = new User();
 
         use = useDAO.findUser(uuid);
-        
+
         return use.getNackname();
 
     }
+
+    public static String getPicture(int uuid) {
+        //启动Cloud内核
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        UserDAO useDAO = cloudFactory.getUserDAO();
+
+        User use = new User();
+
+        use = useDAO.findUser(uuid);
+
+        return use.getPicture();
+
+    }
+
 }

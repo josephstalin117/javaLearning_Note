@@ -1,14 +1,13 @@
 <%-- 
-    Document   : getStudent
-    Created on : Jan 1, 2014, 8:55:02 AM
+    Document   : getTeacher.jsp
+    Created on : Jan 1, 2014, 4:14:40 PM
     Author     : josephstalin
 --%>
-
-<%@page import="java.util.Iterator"%>
+<%@page import="DAOFactory.Teacher"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="DAOFactory.Student"%>
 <%@page import="CloudServlet.LoginBean"%>
-<%@page import="CloudServlet.UserService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +15,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/offcanvas.css" rel="stylesheet">
-        <title>学生管理</title>
+        <title>教师管理</title>
         <%
             LoginBean login = (LoginBean) session.getAttribute("login");
             String state = (String) session.getAttribute("state");
@@ -69,25 +68,25 @@
                     </p>
                     <div class="row">
                         <%
-                            List<Student> list = AdminServlet.AdminService.displayStudent();
-                            for (Iterator<Student> iter = list.iterator();
+                            List<Teacher> list = AdminServlet.AdminService.displayTeacher();
+                            for (Iterator<Teacher> iter = list.iterator();
                                     iter.hasNext();) {
-                                Student s = iter.next();
+                                Teacher t = iter.next();
                         %>
 
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
                                 <img data-src="holder.js/300x200" alt="..." src="../images/avatar.png">
                                 <div class="caption">
-                                    <h3><%=s.getSname()%></h3>
-                                    <p>学号： <%=s.getSid()%></p>
-                                    <p>性别： <%=s.getSex()%></p>
-                                    <p>院号： <%=s.getDid()%></p>
-                                    <p>专业号： <%=s.getSpid()%></p>
-                                    <p>出生年月： <%=s.getBirthday()%></p>
-                                    <p>入学时间： <%=s.getEnrollment()%></p>
+                                    <h3><%=t.getTname()%></h3>
+                                    <p>教师号： <%=t.getTid()%></p>
+                                    <p>性别： <%=t.getSex()%></p>
+                                    <p>院号： <%=t.getDid()%></p>
+                                    <p>专业号： <%=t.getSpid()%></p>
+                                    <p>职称： <%=t.getProid()%></p>
+                                    <p>出生年月： <%=t.getBirthday()%></p>
                                     <p>
-                                        <a href="updateStudent.jsp?uuid=<%=s.getUuid()%>" class="btn btn-primary" role="button">更新</a>
+                                        <a href="updateTeacher.jsp?uuid=<%=t.getUuid()%>" class="btn btn-primary" role="button">更新</a>
                                         <a data-toggle="modal" data-target="#deleteModal" class="btn btn-danger" role="button">删除</a>
                                     </p>
                                 </div>
@@ -106,7 +105,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a type="button" class="btn btn-default" data-dismiss="modal">取消</a>
-                                        <a type="button" class="btn btn-danger" href="../DeleteStudentServlet?uuid=<%=s.getUuid()%>">确认删除</a>
+                                        <a type="button" class="btn btn-danger" href="../DeleteTeacherServlet?uuid=<%=t.getUuid()%>">确认删除</a>
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
@@ -120,9 +119,9 @@
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     <div class="list-group">
                         <a href="admin.jsp" class="list-group-item">管理员主页</a>
-                        <a href="#" class="list-group-item active">学生列表</a>
-                        <a href="addStudent.jsp" class="list-group-item">添加学生</a>
-                        <a href="findStudent.jsp" class="list-group-item">查找学生</a>
+                        <a href="#" class="list-group-item active">教师列表</a>
+                        <a href="addTeacher.jsp" class="list-group-item">添加教师</a>
+                        <a href="findStudent.jsp" class="list-group-item">查找教师</a>
                     </div>
                 </div><!--/span-->
             </div><!--/row-->
@@ -133,10 +132,11 @@
                 <p>&copy; Company 2013</p>
             </footer>
 
-        </div><!--/.container-->
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="../js/jquery.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="../js/bootstrap.min.js"></script>
+
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="../js/jquery.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="../js/bootstrap.min.js"></script>
+            <script src="../js/offcanvas.js"></script>
     </body>
 </html>

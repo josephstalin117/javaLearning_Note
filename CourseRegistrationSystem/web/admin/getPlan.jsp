@@ -1,14 +1,12 @@
 <%-- 
-    Document   : getStudent
-    Created on : Jan 1, 2014, 8:55:02 AM
+    Document   : getModel
+    Created on : Jan 1, 2014, 4:15:18 PM
     Author     : josephstalin
 --%>
-
 <%@page import="java.util.Iterator"%>
+<%@page import="DAOFactory.Plan"%>
 <%@page import="java.util.List"%>
-<%@page import="DAOFactory.Student"%>
 <%@page import="CloudServlet.LoginBean"%>
-<%@page import="CloudServlet.UserService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/offcanvas.css" rel="stylesheet">
-        <title>学生管理</title>
+        <title>JSP Page</title>
         <%
             LoginBean login = (LoginBean) session.getAttribute("login");
             String state = (String) session.getAttribute("state");
@@ -69,25 +67,24 @@
                     </p>
                     <div class="row">
                         <%
-                            List<Student> list = AdminServlet.AdminService.displayStudent();
-                            for (Iterator<Student> iter = list.iterator();
+                            List<Plan> list = AdminServlet.AdminService.displayPlan();
+                            for (Iterator<Plan> iter = list.iterator();
                                     iter.hasNext();) {
-                                Student s = iter.next();
+                                Plan p = iter.next();
                         %>
 
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
                                 <img data-src="holder.js/300x200" alt="..." src="../images/avatar.png">
                                 <div class="caption">
-                                    <h3><%=s.getSname()%></h3>
-                                    <p>学号： <%=s.getSid()%></p>
-                                    <p>性别： <%=s.getSex()%></p>
-                                    <p>院号： <%=s.getDid()%></p>
-                                    <p>专业号： <%=s.getSpid()%></p>
-                                    <p>出生年月： <%=s.getBirthday()%></p>
-                                    <p>入学时间： <%=s.getEnrollment()%></p>
+                                    <h3><%=p.getPid()%></h3>
+                                    <p>课程号： <%=p.getCid()%></p>
+                                    <p>教师号： <%=p.getTid()%></p>
+                                    <p>上课地点： <%=p.getLocation()%></p>
+                                    <p>上课容量： <%=p.getCapacity()%></p>
+                                    <p>上课时间： <%=p.getClasstime()%></p>
                                     <p>
-                                        <a href="updateStudent.jsp?uuid=<%=s.getUuid()%>" class="btn btn-primary" role="button">更新</a>
+                                        <a href="updatePlan.jsp?pid=<%=p.getPid()%>" class="btn btn-primary" role="button">更新</a>
                                         <a data-toggle="modal" data-target="#deleteModal" class="btn btn-danger" role="button">删除</a>
                                     </p>
                                 </div>
@@ -102,11 +99,11 @@
                                         <h4 class="modal-title" id="myModalLabel">警告</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <p>是否删除这个人</p>
+                                        <p>是否删除这个课程</p>
                                     </div>
                                     <div class="modal-footer">
                                         <a type="button" class="btn btn-default" data-dismiss="modal">取消</a>
-                                        <a type="button" class="btn btn-danger" href="../DeleteStudentServlet?uuid=<%=s.getUuid()%>">确认删除</a>
+                                        <a type="button" class="btn btn-danger" href="../DeletePlanServlet?pid=<%=p.getPid()%>">确认删除</a>
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
@@ -120,23 +117,16 @@
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     <div class="list-group">
                         <a href="admin.jsp" class="list-group-item">管理员主页</a>
-                        <a href="#" class="list-group-item active">学生列表</a>
-                        <a href="addStudent.jsp" class="list-group-item">添加学生</a>
-                        <a href="findStudent.jsp" class="list-group-item">查找学生</a>
+                        <a href="#" class="list-group-item active">课程计划列表</a>
+                        <a href="addPlan.jsp" class="list-group-item">添加课程计划</a>
+                        <a href="findPlan.jsp" class="list-group-item">查找课程计划</a>
                     </div>
                 </div><!--/span-->
             </div><!--/row-->
-
-
-            <footer class="">
-                <hr>
-                <p>&copy; Company 2013</p>
-            </footer>
-
-        </div><!--/.container-->
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="../js/jquery.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="../js/bootstrap.min.js"></script>
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="../js/jquery.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="../js/bootstrap.min.js"></script>
+            <script src="../js/offcanvas.js"></script>
     </body>
 </html>
