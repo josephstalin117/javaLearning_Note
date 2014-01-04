@@ -6,6 +6,7 @@
 package DAOFactory;
 
 import java.util.List;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -18,6 +19,8 @@ public interface ModelDAO {
     public boolean deleteModel(Model m);
 
     public Model findModel(int mid);
+
+    public CachedRowSet findStudentModel(String sid);
 
     public List<Model> displayModel();
 

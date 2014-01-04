@@ -56,20 +56,20 @@
                     <div class="jumbotron">
                         <div class="col-xs-6 col-md-3">
                             <a href="#" class="thumbnail">
-                                <img data-src="holder.js/100%x180" alt="..." src="../images/avatar.png">
+                                <img data-src="holder.js/100%x180" alt="..." src="../<%=(String) UserService.getPicture(login.getUuid())%>">
                             </a>
                         </div>
 
                         <h1>Hello, <%=(String) UserService.getNackname(login.getUuid())%></h1>
-                        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+                        <p>这是一个学生界面</p>
                     </div>
                 </div><!--/span-->
 
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     <div class="list-group">
                         <a href="#" class="list-group-item active">学生主页</a>
-                        <a href="getStudent.jsp" class="list-group-item">选课管理</a>
-                        <a href="getTeacher.jsp" class="list-group-item">成绩查询</a>
+                        <a href="chooseCourse.jsp" class="list-group-item">选课管理</a>
+                        <a href="displayScore.jsp" class="list-group-item">成绩查询</a>
                         <a href="../setting.jsp" class="list-group-item">个人设置</a>
                     </div>
                 </div><!--/span-->

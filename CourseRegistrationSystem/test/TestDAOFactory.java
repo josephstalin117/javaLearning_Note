@@ -6,6 +6,7 @@
 
 import DAOFactory.Admin;
 import DAOFactory.AdminDAO;
+import DAOFactory.CourseDAO;
 import DAOFactory.DAOFactory;
 import DAOFactory.Model;
 import DAOFactory.ModelDAO;
@@ -17,7 +18,10 @@ import DAOFactory.Teacher;
 import DAOFactory.TeacherDAO;
 import DAOFactory.User;
 import DAOFactory.UserDAO;
+import com.sun.rowset.CachedRowSetImpl;
+import java.sql.SQLException;
 import java.util.Date;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -25,7 +29,7 @@ import java.util.Date;
  */
 public class TestDAOFactory {
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws SQLException {
         //测试工厂
 //        testFactory();
         //测试新增
@@ -33,7 +37,7 @@ public class TestDAOFactory {
         //测试删除
 //        deleteStudent();
         //测试增加用户
-        insertUser();
+//        insertUser();
         //更新学生
 //        updateStudent();
         //更新老师
@@ -48,7 +52,17 @@ public class TestDAOFactory {
 //        insertModel();
         //测试教师查找
 //        loginTeacher();
+        //显示课程
+//        displayChooseCourse();
+//        选课
+//        testEnroll();
 
+        //查看学分
+//        testDisplayChooseCourse();
+        //老师教课
+//        getClasst();
+        //课程
+        getClasstw();
     }
 
     public static void testFactory() {
@@ -71,7 +85,7 @@ public class TestDAOFactory {
         TeacherDAO teaDAO = cloudFactory.getTeacherDAO();
 
         Teacher tea = teaDAO.loginTeacher(1);
-        
+
         System.err.println(tea.getBirthday());
     }
 
@@ -239,4 +253,102 @@ public class TestDAOFactory {
 //        modDAO.deleteModel(mod);
     }
 
+    public static void displayChooseCourse() throws SQLException {
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        CourseDAO couDAO = cloudFactory.getCourseDAO();
+
+        CachedRowSet cr = couDAO.displayChooseCourse("1");
+
+        if (cr.next()) {
+            int id = cr.getInt("cid");
+
+            String name = cr.getString("cname");
+
+            String class_id = cr.getString("pid");
+
+            int room_id = cr.getInt("location");
+
+            int cour_time = cr.getInt("classtime");
+
+            String tea_name = cr.getString("tname");
+
+            System.out.print(id);
+
+            System.out.print(name);
+
+        }
+    }
+
+    public static void testEnroll() throws SQLException {
+
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        CourseDAO couDAO = cloudFactory.getCourseDAO();
+
+        couDAO.enroll("3", "11");
+
+    }
+
+    public static void testDisplayChooseCourse() throws SQLException {
+
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        ModelDAO modDAO = cloudFactory.getModelDAO();
+
+        CachedRowSet cr = modDAO.findStudentModel("1");
+
+        if (cr.next()) {
+            int score = cr.getInt("score");
+
+            String cname = cr.getString("cname");
+
+            String credit = cr.getString("credit");
+
+            System.out.print(score);
+
+            System.out.print(credit);
+
+        }
+    }
+
+    public static void getClasst() throws SQLException {
+
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        TeacherDAO teaDAO = cloudFactory.getTeacherDAO();
+
+        CachedRowSet cr = teaDAO.getClass("1");
+
+        if (cr.next()) {
+            int pid = cr.getInt("pid");
+
+            String cname = cr.getString("cname");
+
+            System.out.print(pid);
+
+            System.out.print(cname);
+
+        }
+    }
+
+    public static void getClasstw() throws SQLException {
+
+        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
+
+        TeacherDAO teaDAO = cloudFactory.getTeacherDAO();
+
+        CachedRowSet cr = teaDAO.getStudents("1");
+
+        if (cr.next()) {
+            int pid = cr.getInt("sid");
+
+            String sname = cr.getString("sname");
+
+            System.out.print(pid);
+
+            System.out.print(sname);
+
+        }
+    }
 }

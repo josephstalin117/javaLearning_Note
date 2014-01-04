@@ -5,6 +5,7 @@
  */
 package DAOFactory;
 
+import com.sun.rowset.CachedRowSetImpl;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -105,6 +106,80 @@ public class CloudTeacherDAO implements TeacherDAO {
 
         }
         return null;
+    }
+
+    public CachedRowSet getClass(String tid) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "select cr_plan.pid,cr_curriculum.cname " + "from cr_plan,cr_curriculum "
+                + "where cr_curriculum.cid=cr_plan.cid " + "and cr_plan.tid='"
+                + tid + "'";
+
+        try {
+            con = CloudDAOFactory.getCon();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            CachedRowSet crs = new CachedRowSetImpl();
+            crs.populate(rs);
+
+            return crs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CloudDAOFactory.free(rs, ps, con);
+
+        }
+        return null;
+    }
+
+    public boolean marking(String sid, String cid, String score) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "update cr_modelselect " + "set score='" + score + "' "
+                + "where sid='" + sid + "' " + "and cid='"
+                + cid + "' ";
+
+        int i = CloudDAOFactory.writeDB(sql); //设定输入数据
+
+        if (i == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public CachedRowSet getStudents(String pid) {
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select cr_stuinfo.sid,cr_stuinfo.sname "
+                + "from cr_stuinfo,cr_modelselect,cr_plan "
+                + "where cr_stuinfo.sid=cr_modelselect.sid "
+                + "and cr_plan.pid=cr_modelselect.pid " + "and cr_plan.pid='"
+                + pid + "' ";
+
+        try {
+            con = CloudDAOFactory.getCon();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            CachedRowSet crs = new CachedRowSetImpl();
+            crs.populate(rs);
+
+            return crs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CloudDAOFactory.free(rs, ps, con);
+
+        }
+        return null;
+
     }
 
     public Teacher loginTeacher(int tid) {

@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CloudServlet;
+package StudentServlet;
 
-import DAOFactory.Course;
 import DAOFactory.CourseDAO;
 import DAOFactory.DAOFactory;
+import DAOFactory.Student;
+import DAOFactory.StudentDAO;
 import DAOFactory.User;
 import DAOFactory.UserDAO;
 import java.io.IOException;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author josephstalin
  */
-public class UpdateUserServlet extends HttpServlet {
+public class ChooseCourseServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +43,10 @@ public class UpdateUserServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateUserServlet</title>");
+            out.println("<title>Servlet ChooseCourseServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UpdateUserServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChooseCourseServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
@@ -65,29 +66,21 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         HttpSession session = request.getSession(true);
 
-        int uuid = Integer.parseInt(request.getParameter("uuid").trim());
+        String sid = request.getParameter("sid").trim();
+        String pid = request.getParameter("pid").trim();
 
-        String nackname = new String(request.getParameter("nackname").trim().getBytes("ISO-8859-1"), "UTF-8");
-        String password = request.getParameter("password").trim();
-
-        DAOFactory cloudFactory = DAOFactory.getDAOFactory();
-        UserDAO useDAO = cloudFactory.getUserDAO();
-
-        User use = useDAO.findUser(uuid);
-
-        use.setNackname(nackname);
-        use.setPassword(password);
-
-        boolean i = updateUser(use);
+        boolean i = enrollCourse(sid, pid);
         if (i) {
-            session.setAttribute("state", "成功修改密码.");
+            session.setAttribute("state", "成功选课.");
         } else {
-            session.setAttribute("state", "修改密码失败.");
+            session.setAttribute("state", "选课失败.");
         }
 
-        response.sendRedirect("setting.jsp");
+        response.sendRedirect("student/chooseCourse.jsp");
+
     }
 
     /**
@@ -101,7 +94,7 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -114,12 +107,13 @@ public class UpdateUserServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private static boolean updateUser(User use) {
+    private static boolean enrollCourse(String sid, String pid) {
+
         DAOFactory cloudFactory = DAOFactory.getDAOFactory();
 
-        UserDAO useDAO = cloudFactory.getUserDAO();
+        CourseDAO couDAO = cloudFactory.getCourseDAO();
 
-        boolean i = useDAO.updateUser(use);
+        boolean i = couDAO.enroll(sid, pid);
 
         return i;
     }

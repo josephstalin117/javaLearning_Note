@@ -110,6 +110,7 @@ public class CheckEnrol {
                 + "and classes.id in "
                 + "( select classes.id from classes,student,course  "
                 + "where classes.id not in( select class_id from enrol where stu_id='" + id + "') "
+                //
                 + "and ( student.department=course.dep or course.dep ='public')  "
                 + "and course.id=classes.cour_id and student.id='" + id + "') ";
 

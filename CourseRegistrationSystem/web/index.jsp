@@ -15,7 +15,7 @@ Author     : josephstalin
     <%
         String error = (String) session.getAttribute("error");
 
-        if (error!=null) {
+        if (error != null) {
             if (error.equals("fail")) {
     %>
     <script>
@@ -82,8 +82,8 @@ Author     : josephstalin
                     <img data-src="holder.js/900x500/auto/#777:#7a7a7a/text:First slide" src="images/bg0.jpg">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>一口气选五门，不吃力了</h1>
-                            <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+                            <h1 style="font-family: 微软雅黑">学生选课系统</h1>
+                            <p>曾经我是一个孤独男孩，在没有遇到它之前，我的世界是黑白的</p>
                             <p><a class="btn btn-lg btn-primary" href="#" role="button" data-toggle="modal" data-target="#myModal">Login in</a></p>
                         </div>
                     </div>
@@ -92,8 +92,8 @@ Author     : josephstalin
                     <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" src="images/bg1.jpg">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <h1 style="font-family: 微软雅黑">学生选课系统</h1>
+                            <p>但是就是他让我找回了男人往日的自信</p>
                             <p><a class="btn btn-lg btn-primary" href="#" role="button" data-toggle="modal" data-target="#myModal">Login in</a></p>
                         </div>
                     </div>
@@ -102,8 +102,8 @@ Author     : josephstalin
                     <img data-src="holder.js/900x500/auto/#555:#5a5a5a/text:Third slide" src="images/bg2.jpg">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>One more for good measure.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                            <h1 style="font-family: 微软雅黑">学生选课系统</h1>
+                            <p>妈妈再也不担心我的选课了</p>
                             <p><a class="btn btn-lg btn-primary" href="#" role="button" data-toggle="modal" data-target="#myModal">Login in</a></p>
                         </div>
                     </div>
@@ -154,21 +154,21 @@ Author     : josephstalin
             <!-- Three columns of text below the carousel -->
             <div class="row">
                 <div class="col-lg-4">
-                    <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="images/Columns.png">
-                    <h2>Heading</h2>
-                    <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                    <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="images/0.jpg">
+                    <h2>潘晨峰</h2>
+                    <p>首席创意师</p>
                     <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
-                    <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="images/Columns.png">
-                    <h2>Heading</h2>
-                    <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                    <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="images/0.jpg">
+                    <h2>林永泽</h2>
+                    <p>项目经理，首席架构师</p>
                     <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                 </div><!-- /.col-lg-4 -->
                 <div class="col-lg-4">
-                    <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="images/Columns.png">
-                    <h2>Heading</h2>
-                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image" src="images/0.jpg">
+                    <h2>马钰杰</h2>
+                    <p>首席数据库工程师</p>
                     <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
                 </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
@@ -176,31 +176,31 @@ Author     : josephstalin
             <hr class="featurette-divider">
             <div class="row featurette">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                    <h2 class="featurette-heading">强劲架构<span class="text-muted">高内聚，低藕合</span></h2>
+                    <p class="lead">采用基于抽象工厂的系统内核，可拓展性极强，完整的MVC分层。</p>
                 </div>
                 <div class="col-md-5">
-                    <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="images/hehe.png">
+                    <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="images/DAOFactory.png">
                 </div>
             </div>
             <hr class="featurette-divider">
             <div class="row featurette">
                 <div class="col-md-5">
-                    <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="images/hehe.png">
+                    <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="images/QR.jpg">
                 </div>
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                    <h2 class="featurette-heading">构建丰富的前端界面。 <span class="text-muted">css+div+js</span></h2>
+                    <p class="lead">基于bootstrap前端框架，兼容移动端的响应式布局</p>
                 </div>
             </div>
             <hr class="featurette-divider">
             <div class="row featurette">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-                    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                    <h2 class="featurette-heading">完善安全的基于角色的权限控制<span class="text-muted">让您的数据更安全</span></h2>
+                    <p class="lead">密码经过md5加密,同时基于角色的信息管理让系统更加文件</p>
                 </div>
                 <div class="col-md-5">
-                    <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="images/hehe.png">
+                    <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="Generic placeholder image" src="images/R.png">
                 </div>
             </div>
             <hr class="featurette-divider">

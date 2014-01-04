@@ -52,6 +52,14 @@
         <servlet-name>UpdateUserServlet</servlet-name>
         <servlet-class>CloudServlet.UpdateUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChooseCourseServlet</servlet-name>
+        <servlet-class>StudentServlet.ChooseCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <servlet-class>CloudServlet.FileUploadServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -68,11 +76,11 @@
         <servlet-name>DeleteStudentServlet</servlet-name>
         <url-pattern>/DeleteStudentServlet</url-pattern>
     </servlet-mapping>
-    <!--    <session-config>
+    <session-config>
         <session-timeout>
             120
         </session-timeout>
-    </session-config>-->
+    </session-config>
     <servlet-mapping>
         <servlet-name>DeleteTeacherServlet</servlet-name>
         <url-pattern>/DeleteTeacherServlet</url-pattern>
@@ -108,5 +116,13 @@
     <servlet-mapping>
         <servlet-name>UpdateUserServlet</servlet-name>
         <url-pattern>/UpdateUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChooseCourseServlet</servlet-name>
+        <url-pattern>/ChooseCourseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <url-pattern>/FileUploadServlet</url-pattern>
     </servlet-mapping>
 </web-app>

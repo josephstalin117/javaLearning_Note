@@ -5,7 +5,9 @@
  */
 package DAOFactory;
 
+import com.sun.rowset.CachedRowSetImpl;
 import java.util.List;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -20,6 +22,10 @@ public interface CourseDAO {
     public Course findCourse(int cid);
 
     public List<Course> displayCourse();
+
+    public CachedRowSet displayChooseCourse(String sid);
+
+    public boolean enroll(String sid, String pid);
 
     public boolean updateCourse(Course s);
 }

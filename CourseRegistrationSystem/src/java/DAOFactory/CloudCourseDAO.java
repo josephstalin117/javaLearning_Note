@@ -5,6 +5,7 @@
  */
 package DAOFactory;
 
+import com.sun.rowset.CachedRowSetImpl;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -102,6 +103,53 @@ public class CloudCourseDAO implements CourseDAO {
 
         }
         return null;
+    }
+
+    public CachedRowSet displayChooseCourse(String sid) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "select DISTINCT cr_curriculum.cid,cr_curriculum.cname"
+                + ",cr_plan.pid as class_id,cr_plan.location,cr_plan.classtime,cr_teainfo.tname "
+                + "from cr_curriculum,cr_plan,cr_teainfo "
+                + "where cr_plan.cid=cr_curriculum.cid "
+                + "and cr_plan.tid=cr_teainfo.tid "
+                + "and cr_plan.pid in "
+                + "(select cr_plan.pid from cr_plan,cr_stuinfo,cr_curriculum "
+                + "where cr_plan.pid not in( select cr_modelselect.pid from cr_modelselect where sid='" + sid + "') "
+                + "and cr_curriculum.cid=cr_plan.cid and cr_stuinfo.sid='" + sid + "') ";
+
+        try {
+            con = CloudDAOFactory.getCon();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            CachedRowSet crs = new CachedRowSetImpl();
+            crs.populate(rs);
+
+            return crs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            CloudDAOFactory.free(rs, ps, con);
+        }
+        return null;
+
+    }
+
+    public boolean enroll(String sid, String pid) {
+        String sql = "insert into cr_modelselect(sid,pid) " + " VALUES('"
+                + sid + "','" + pid + "')";
+
+        int i = CloudDAOFactory.writeDB(sql);
+
+        if (i == 1) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public boolean updateCourse(Course c) {

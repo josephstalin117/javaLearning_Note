@@ -6,6 +6,7 @@
 package DAOFactory;
 
 import java.util.List;
+import javax.sql.rowset.CachedRowSet;
 
 /**
  *
@@ -20,6 +21,10 @@ public interface TeacherDAO {
     public Teacher findTeacher(int uuid);
 
     public List<Teacher> displayTeacher();
+
+    public CachedRowSet getClass(String tid);
+
+    public CachedRowSet getStudents(String class_id);
 
     public Teacher loginTeacher(int tid);
 

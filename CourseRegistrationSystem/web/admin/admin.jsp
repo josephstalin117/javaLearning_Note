@@ -55,7 +55,7 @@
                     <div class="jumbotron">
                         <div class="col-xs-6 col-md-3">
                             <a href="#" class="thumbnail">
-                                <img data-src="holder.js/100%x180" alt="..." src="../images/avatar.png">
+                                <img data-src="holder.js/100%x180" alt="..." src="../<%=(String) UserService.getPicture(login.getUuid())%>">
                             </a>
                         </div>
 
@@ -67,6 +67,7 @@
                 <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
                     <div class="list-group">
                         <a href="#" class="list-group-item active">管理员主页</a>
+                        <a href="getAccount.jsp" class="list-group-item">全部用户</a>
                         <a href="getStudent.jsp" class="list-group-item">学生管理</a>
                         <a href="getTeacher.jsp" class="list-group-item">教师管理</a>
                         <a href="getCourse.jsp" class="list-group-item">课程管理</a>
